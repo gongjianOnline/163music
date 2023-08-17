@@ -8,6 +8,9 @@
 
 <style lang="less" >
   @import "./assets/css/normalize.css";
-  
+  *{
+    box-sizing: border-box;
+  }
+
 
 </style>
