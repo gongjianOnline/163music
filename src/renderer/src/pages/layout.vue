@@ -2,9 +2,16 @@
   <!-- 主视图 -->
   <div class="mainView">
     <!-- 左菜单模块 -->
-    <div class="menuContainer"></div>
+    <div class="menuContainer">
+      <MenuComponents></MenuComponents>
+    </div>
+    
     <!-- 右主图模块 -->
-    <div class="mainContainer"></div>
+    <div class="mainContainer">
+
+    </div>
+
+
   </div>
   <!-- 播放器 -->
   <div class="audioContainer"> 
@@ -13,6 +20,7 @@
 </template>
 
 <script lang="ts" setup>
+import MenuComponents from "../components/menuComponents/index.vue"
 
 </script>
 
