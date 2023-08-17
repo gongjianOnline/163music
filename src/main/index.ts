@@ -9,6 +9,7 @@ function createWindow(): void {
     width: 900,
     height: 670,
     show: false,
+    frame:false, /* 关闭顶部菜单栏 */
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -16,10 +17,13 @@ function createWindow(): void {
       sandbox: false
     }
   })
-
+  mainWindow.webContents.openDevTools();
+  
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
+
+  
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
