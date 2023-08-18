@@ -76,7 +76,7 @@ const currentMenu = reactive([
   },
   {
     "text":"下载管理",
-    "icon":"#icon-xiazai1"
+    "icon":"#icon-xiazai2"
   },
 ])
 /* 通用菜单事件 */
@@ -108,6 +108,7 @@ const handelCurrentMenuClick = (index)=>{
   display: flex;
   align-items: center;
   padding: 10px 14px;
+  margin-top: 6px;
   cursor: pointer;
   border-radius: 0.6rem;
   transition: all 0.25s;
