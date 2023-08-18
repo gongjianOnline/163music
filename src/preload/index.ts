@@ -1,4 +1,4 @@
-import { contextBridge } from 'electron'
+import { contextBridge,ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
@@ -20,3 +20,24 @@ if (process.contextIsolated) {
   // @ts-ignore (define in dts)
   window.api = api
 }
+
+/* 窗口操作变化 */
+contextBridge.exposeInMainWorld("mainWindow",{
+  /* 最小化窗口 */
+  "onMinimize":()=>{
+    ipcRenderer.send("handelMinimize")
+  },
+  /* 最大窗口 */
+  "onMaxWindow":()=>{
+    ipcRenderer.send("handelMaxWindow")
+  },
+  "onClose":()=>{
+    ipcRenderer.send("handelClose")
+  },
+  /* 获取窗口大小 */
+  "getWindowStatus":()=>{
+    return ipcRenderer.invoke("getWindowStatus");
+  }
+
+
+})

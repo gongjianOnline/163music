@@ -13,5 +13,6 @@ import HeaderComponents from  "../components/mainView/headerComponents.vue"
 <style lang="less" scoped>
 .homeComponent{
   padding: 30px 20px;
+  -webkit-app-region:drag
 }
 </style>

@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -14,6 +14,7 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
+      nodeIntegration:true,
       sandbox: false
     }
   })
@@ -37,6 +38,7 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
 }
 
 // This method will be called when Electron has finished
@@ -73,3 +75,34 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+
+/* 主进程通信 */
+/* 最小化窗口 */
+ipcMain.on("handelMinimize",()=>{
+  const focusedWindow = BrowserWindow.getFocusedWindow();
+  if(focusedWindow){
+    focusedWindow.minimize()
+  }
+})
+/* 窗口最大化 */
+ipcMain.on("handelMaxWindow",()=>{
+  const focusedWindow = BrowserWindow.getFocusedWindow();
+  if(focusedWindow){
+    focusedWindow.isMaximized()?focusedWindow.restore():focusedWindow.maximize();
+  }
+})
+/* 关闭窗口 */
+ipcMain.on("handelClose",()=>{
+  const focusedWindow = BrowserWindow.getFocusedWindow();
+  if(focusedWindow){
+    app.quit()
+  }
+})
+
+
+/* invoke双向通信 */
+/* 获取窗口大小的状态 */
+ipcMain.handle("getWindowStatus",()=>{
+  const focusedWindow = BrowserWindow.getFocusedWindow();
+  return focusedWindow?.isMaximized()
+})

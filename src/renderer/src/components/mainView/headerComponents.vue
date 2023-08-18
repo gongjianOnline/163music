@@ -47,17 +47,20 @@
 
       <!-- 窗口操作 -->
       <div class="windowOperateContainer"> 
-        <div class="">
+        <div class="" @click="handelMainWindow('mini')">
           <svg class="icon backIcon userIconItem" aria-hidden="true">
             <use xlink:href="#icon-zuixiaohua"></use>
           </svg>
         </div>
-        <div class="">
-          <svg class="icon backIcon userIconItem" aria-hidden="true">
+        <div class="" @click="handelMainWindow('max')">
+          <svg v-show="!isMaximized" class="icon backIcon userIconItem" aria-hidden="true">
             <use xlink:href="#icon-zuidahua1"></use>
           </svg>
+          <svg v-show="isMaximized" class="icon backIcon userIconItem" aria-hidden="true">
+            <use xlink:href="#icon-zuidahua"></use>
+          </svg>
         </div>
-        <div class="">
+        <div class="" @click="handelMainWindow('close')">
           <svg class="icon backIcon userIconItem" aria-hidden="true">
             <use xlink:href="#icon-guanbi"></use>
           </svg>
@@ -74,6 +77,26 @@
 </template>
 
 <script lang="ts" setup>
+import {ref} from "vue"
+
+const isMaximized = ref(false);
+
+const handelMainWindow =async (btnType)=>{
+  switch (btnType) {
+    case "mini":
+      window.mainWindow.onMinimize()
+      break;
+    case "max":
+      window.mainWindow.onMaxWindow();
+      isMaximized.value = await window.mainWindow.getWindowStatus();
+      console.log(isMaximized.value)
+      break;
+    default:
+      window.mainWindow.onClose()
+      break;
+  }
+}
+
 
 </script>
 
@@ -93,6 +116,7 @@
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.25s;
+  -webkit-app-region: no-drag;
 }
 .backContainer:hover{
   background: var(--colorHover);
@@ -102,6 +126,7 @@
 }
 /* 搜索 */
 .searchContainer{
+  -webkit-app-region: no-drag;
   margin-left: 10px;
   border: 1px solid transparent;
   border-left: 1px solid rgba(217,230,249,1);
@@ -115,6 +140,7 @@
   background: linear-gradient(90deg, rgba(217,230,249,1) 0%, rgba(247,228,242,1) 100%);
 }
 .searchContainer>input{
+  -webkit-app-region: no-drag;
   width: 100%;
   height: 100%;
   outline:none;
@@ -137,6 +163,7 @@
 }
 /* 用户模块 */
 .userContainer{
+  -webkit-app-region: no-drag;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -160,6 +187,7 @@
 }
 .userIconContainer>div{
   margin-left: 10px;
+  -webkit-app-region: no-drag;
 }
 .userIconContainer .icon{
   fill: #7b8290;
@@ -193,6 +221,7 @@
 }
 .windowOperateContainer>div{
   margin-left: 10px;
+  -webkit-app-region: no-drag;
 }
 .windowOperateContainer .icon{
   cursor: pointer;
