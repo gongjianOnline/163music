@@ -8,21 +8,24 @@
 
   <!-- 通用菜单 -->
   <div class="currentComponent"> 
-    <div class="rowComponent" 
-      :class="{'rowComponentActive':index == currentMenuIndex}"
-      v-for="(item,index) in currentMenu" 
-      :key="index"
-      @click="handelCurrentMenuClick(index)">
+    <div v-for="(item,index) in currentMenu" :key="index">
+      <div class="rowComponent" 
+        :class="{'rowComponentActive':index == currentMenuIndex}"
+        @click="handelCurrentMenuClick(index)"
+        v-if="item.text !== '分割'">
+        <!-- 菜单 -->
+        <div> 
+          <svg class="icon currentIcon" aria-hidden="true">
+            <use :xlink:href="item.icon"></use>
+          </svg>
+        </div>
+        <div class="currentContent">{{item.text}}</div>
+      </div>
+
       <!-- 分割线 -->
       <div v-if="item.text == '分割'" class="partition"></div>
-      <!-- 菜单 -->
-      <div v-if="item.text !== '分割'"> 
-        <svg class="icon currentIcon" aria-hidden="true">
-          <use :xlink:href="item.icon"></use>
-        </svg>
-      </div>
-      <div v-if="item.text !== '分割'" class="currentContent">{{item.text}}</div>
     </div>
+    
 
   </div>
 
@@ -90,7 +93,7 @@ const handelCurrentMenuClick = (index)=>{
   padding: 20px;
   text-align: center;
   overflow: hidden;
-  -webkit-app-drag: drag;
+  -webkit-app-region:drag
 }
 .musicLogo{
   transform: scale(11) translateY(.1rem);
@@ -140,6 +143,7 @@ const handelCurrentMenuClick = (index)=>{
 .partition{
   border-bottom: 1.5px solid #e4e8ec;
   width: 100%;
+  margin: 10px 0px;
 }
 
 
