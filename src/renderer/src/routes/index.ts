@@ -2,9 +2,19 @@
 
 import { createRouter,createWebHashHistory } from 'vue-router'
 import Layout from "../pages/layout.vue";
+import Home from "../pages/home.vue";
 
 const routes = [
-  { path: '/', component: Layout },
+  { 
+    path: '/', 
+    component: Layout,
+    children:[
+      {
+        path:"/",
+        component:Home
+      }
+    ] 
+  },
 ]
 
 const router = createRouter({

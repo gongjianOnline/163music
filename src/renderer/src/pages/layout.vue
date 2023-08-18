@@ -8,7 +8,7 @@
     
     <!-- 右主图模块 -->
     <div class="mainContainer">
-
+      <router-view></router-view>
     </div>
 
 
@@ -28,7 +28,7 @@ import MenuComponents from "../components/menuComponents/index.vue"
 .mainView{
   width: 100%;
   height: calc(100vh - 80px);
-  background: RGB(247,249,252);
+  display: flex;
 }
 .audioContainer{
   border-top: 1px solid RGB(230,231,233);
@@ -42,6 +42,11 @@ import MenuComponents from "../components/menuComponents/index.vue"
   max-width: 200px;
   height: 100%;
   background: RGB(240,243,246);
+}
+/* 左视图 */
+.mainContainer{
+  flex: 1;
+  background: RGB(247,249,252);
 }
 
 

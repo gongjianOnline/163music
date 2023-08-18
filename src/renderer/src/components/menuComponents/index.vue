@@ -114,7 +114,7 @@ const handelCurrentMenuClick = (index)=>{
   transition: all 0.25s;
 }
 .rowComponent:hover{
-  background: #e4e8ec;
+  background: var(--colorHover);
 }
 .rowComponentActive{
   border-radius: 0.6rem;

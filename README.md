@@ -1,26 +1,22 @@
 # 163music
 
-An Electron application with Vue and TypeScript
+基于 electron 在线音乐播放器,内核技术栈 vue3 - TS 
 
-## Recommended IDE Setup
+## 项目启动
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-## Project Setup
-
-### Install
+### 安装
 
 ```bash
 $ pnpm install
 ```
 
-### Development
+### 运行
 
 ```bash
 $ pnpm dev
 ```
 
-### Build
+### 打包
 
 ```bash
 # For windows
@@ -32,3 +28,23 @@ $ pnpm build:mac
 # For Linux
 $ pnpm build:linux
 ```
+
+## 目录文件说明
+
+- api 接口统一管理文件夹
+  - api.ts 作为接口统一的出口文件
+  - homeAPi.ts 获取主要页面信息接口模块
+- utils 工具类
+  - axios.ts 对于axios的二次封装
+  - http.ts 对于常用请求方式的二次封装
+- public 用于存放前端静态资源, 代码可以直接访问 "/img/xxx.png "
+- components 组件部分
+  - mainView 右侧主视图模块组件
+    - headerComponents.vue 对搜索,用户信息,窗口的操作的组件封装
+  - menuComponents 左侧视图组件封装
+    - index.vue 对菜单部分的组件封装
+- pages 页面部分
+  - layout.vue 对整个项目页面框架搭建
+  - home.vue 为我推荐页面
+
+​	

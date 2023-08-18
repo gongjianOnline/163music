@@ -8,6 +8,10 @@
 
 <style lang="less" >
   @import "./assets/css/normalize.css";
+  body{
+    --colorHover:#e4e8ec;
+  }
+
   *{
     box-sizing: border-box;
   }
