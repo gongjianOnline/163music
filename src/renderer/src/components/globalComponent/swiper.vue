@@ -44,19 +44,20 @@
 .marginContainer{
   margin: 0 20px;
 }
-.swiper{
-  padding: 0px 20px;
-}
 .swiper-button-prev:after{
   font-size: 20px;
   position: absolute;
-  left: -4px;
+  /* left: -4px; */
   color: #bbb;
+  background: rgb(118, 118, 118);
+  padding: 4px;
 }
 .swiper-button-next:after{
   font-size: 20px;
   position: absolute;
-  right: -10px;
+  /* right: -10px; */
   color: #bbb;
+  background: rgb(118, 118, 118);
+  padding: 4px;
 }
 </style>

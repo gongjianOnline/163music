@@ -1,6 +1,6 @@
 <template>
   <div class="swiperComponent">
-    <SwiperComponent :spaceBetween="390">
+    <SwiperComponent :spaceBetween="320">
       <template #swiperSlide>
         <swiper-slide class="swiperSlide">
           <div>
@@ -41,10 +41,10 @@ import { SwiperSlide } from 'swiper/vue';
 }
 /* 轮播内容容器 */
 .swiperSlide{
-  width:50% !important;
-  margin-right:5px !important;
-  margin-left: 5px !important;
-  padding-right:6px !important ;
+  width:49% !important;
+  margin-right:10px !important;
+  // margin-left: 5px !important;
+  // padding-right:6px !important ;
   height: 100%;
 }
 .swiperSlide>div,
@@ -56,7 +56,7 @@ import { SwiperSlide } from 'swiper/vue';
 }
 /* 副内容 */
 .fitSwiperSlide{
-  width: 25% !important;
+  width: 23% !important;
   height: 100% !important;
   margin-right:10px !important;
 }

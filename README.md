@@ -48,6 +48,7 @@ $ pnpm build:linux
     - index.vue 对菜单部分的组件封装
   - homeComponent 首页组件存放文件
     - bannerComponent.vue 首页bannber轮播图
+    - singleRowComponent.vue 创建的单行轮播组件
   
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
