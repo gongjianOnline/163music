@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-  import {ref} from "vue"
+  import {ref } from "vue"
   import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
   import { Swiper } from 'swiper/vue';
 
@@ -25,9 +25,7 @@
   import 'swiper/css/navigation';
 
   defineProps<{
-    spaceBetween:{
-      type:number,
-    }
+    spaceBetween:number
   }>();
   
   
