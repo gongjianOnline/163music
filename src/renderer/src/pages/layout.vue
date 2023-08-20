@@ -45,7 +45,7 @@ import MenuComponents from "../components/menuComponents/index.vue"
 }
 /* 左视图 */
 .mainContainer{
-  flex: 1;
+  width: calc(100% - 200px);
   background: RGB(247,249,252);
 }
 
