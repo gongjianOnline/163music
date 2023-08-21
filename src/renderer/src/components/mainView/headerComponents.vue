@@ -104,6 +104,12 @@ const handelMainWindow =async (btnType)=>{
 .headerContainer{
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  padding: 30px 20px 10px 20px;
+  background: RGB(247,249,252);
 }
 /* 左侧 */
 .leftComponent{

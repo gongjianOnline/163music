@@ -47,6 +47,7 @@ import MenuComponents from "../components/menuComponents/index.vue"
 .mainContainer{
   width: calc(100% - 200px);
   background: RGB(247,249,252);
+  overflow: auto;
 }
 
 
