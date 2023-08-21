@@ -1,92 +1,78 @@
 <template>
-  <div class="singRowContainer">
-    <!-- 标题 -->
-    <div class="titleName">
-      <div class="singRowTitle">推荐歌单</div>
+  <div class="singleRowContainer">
+    <div class="SRTitle">
       <div>
-        <svg class="icon singIcon" aria-hidden="true">
+        <slot name="titleName"></slot>
+      </div>
+      <div class="SRTitleIcon">
+        <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-fanhui"></use>
         </svg>
       </div>
     </div>
-    
-    <!-- 轮播cesium -->
-    <div class="swiperContainer">
-      <swiper 
-        style="height: 100%;"
-        :modules="modules"
-        :slides-per-view="3"
-        :pagination="{ clickable: true }"
-        :scrollbar="{ draggable: true }"
-        :navigation="true" 
-        class="SRSwiperContainer">
-        <swiper-slide class="SRSItem">Slide 1</swiper-slide>
-        <swiper-slide class="SRSItem">Slide 2</swiper-slide>
-        <swiper-slide class="SRSItem">Slide 3</swiper-slide>
-        <swiper-slide class="SRSItem">Slide 4</swiper-slide>
-        <swiper-slide class="SRSItem">Slide 5</swiper-slide>
-        <swiper-slide class="SRSItem">Slide 6</swiper-slide>
-        <swiper-slide class="SRSItem">Slide 7</swiper-slide>
-        <swiper-slide class="SRSItem">Slide 8</swiper-slide>
-      </swiper>
-    </div>
-
-
+    <Carousel :items-to-show="3">
+      <slot name="slideComponent"></slot>
+      <template #addons>
+        <Navigation />
+      </template>
+    </Carousel>
   </div>
+
+
 </template>
 
 <script lang="ts" setup>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-
-
-const modules = [Navigation,Pagination,Scrollbar,A11y]
-
+import { Carousel, Navigation } from 'vue3-carousel'
+import 'vue3-carousel/dist/carousel.css'
 </script>
 
 <style lang="less" scoped> 
-.singRowContainer{
-  margin-top: 20px;
-  border: 1px solid red;
+.singleRowContainer{
   width: 100%;
-  height: 240px;
-  display: flex;
-  flex-direction: column;
+  height: 250px;
+  border:1px solid red;
+  margin-top: 20px;
 }
-.titleName{
+.SRTitle{
   display: flex;
   align-items: center;
-  cursor: pointer;
+  color: #283248;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
-.singIcon{
+.SRTitleIcon{
   transform: rotate(180deg);
-  font-size: 20px;
+  margin-top: 4px;
   fill: #283248;
-  font-weight: bold;
+  font-weight: 800;
 }
-.singRowTitle{
-  color:#283248;
-  font-size: 20px;
-  font-weight: bold;
+.singleRowContainer:deep(.carousel){
+  height: calc(100% - 22.4px);
 }
-/* 轮播容器 */
-.swiperContainer{
-  border: 1px solid #111;
-  margin-top: 10px;
+.singleRowContainer:deep(.carousel__next){
+  right: -10px;
+}
+.singleRowContainer:deep(.carousel__prev){
+  left: -20px;
+}
+/* 轮播轮播图调整 */
+.singleRowContainer:deep(ol){
+  margin: 0px !important;
+  height: 100%;
+}
+.singleRowContainer:deep(li),
+.singleRowContainer:deep(.carousel__viewport),
+.singleRowContainer:deep(.carousel){
+  height: calc(100% - 11px) !important;
+}
+.slideContent{
   width: 100%;
   height: 100%;
-}
-.SRSwiperContainer{
-  height: 100%;
-}
-/* 推荐歌单 */
-.SRSItem{
-  width: 190px !important;
-  height: 100% !important;
   border: 1px solid red;
-  margin-right: 10px;
+}
+.carousel__item{
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
 }
 </style>
