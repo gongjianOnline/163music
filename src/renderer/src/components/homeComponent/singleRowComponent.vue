@@ -10,7 +10,7 @@
         </svg>
       </div>
     </div>
-    <Carousel :items-to-show="3">
+    <Carousel :items-to-show="4" snap-align="start">
       <slot name="slideComponent"></slot>
       <template #addons>
         <Navigation />
@@ -50,10 +50,10 @@ import 'vue3-carousel/dist/carousel.css'
   height: calc(100% - 22.4px);
 }
 .singleRowContainer:deep(.carousel__next){
-  right: -10px;
+  right: -37px;
 }
 .singleRowContainer:deep(.carousel__prev){
-  left: -20px;
+  left: -37px;
 }
 /* 轮播轮播图调整 */
 .singleRowContainer:deep(ol){

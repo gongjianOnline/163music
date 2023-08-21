@@ -8,16 +8,24 @@
         <template #titleName>推荐歌单</template>
         <template #slideComponent>
           <Slide class="slideContent">
-            <div class="carousel__item">xxx</div>
+            <div class="carousel__item">
+              <img src="/img/hone5.jpg" alt="">
+            </div>
           </Slide>
           <Slide class="slideContent">
-            <div class="carousel__item">xxx</div>
+            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
           </Slide>
           <Slide class="slideContent">
-            <div class="carousel__item">xxx</div>
+            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
           </Slide>
           <Slide class="slideContent">
-            <div class="carousel__item">xxx</div>
+            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
+          </Slide>
+          <Slide class="slideContent">
+            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
+          </Slide>
+          <Slide class="slideContent">
+            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
           </Slide>
         </template>
       </SingleRowComponent>
@@ -46,5 +54,15 @@ import { Slide } from 'vue3-carousel';
   padding: 30px 20px;
   -webkit-app-region:no-drag
 }
-
+.carousel__item{
+  height: 100%;
+  width: 100%;
+  border: 1px solid red;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.carousel__item>img{
+  width: 100%;
+  height: 100%;
+}
 </style>
