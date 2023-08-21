@@ -30,8 +30,6 @@ import 'vue3-carousel/dist/carousel.css'
 .singleRowContainer{
   width: 100%;
   height: 250px;
-  border:1px solid red;
-  margin-top: 20px;
 }
 .SRTitle{
   display: flex;
@@ -68,11 +66,9 @@ import 'vue3-carousel/dist/carousel.css'
 .slideContent{
   width: 100%;
   height: 100%;
-  border: 1px solid red;
 }
 .carousel__item{
   width: 100%;
   height: 100%;
-  border: 1px solid red;
 }
 </style>

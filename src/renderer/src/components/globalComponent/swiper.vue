@@ -1,63 +1,23 @@
 <template>
-  <swiper
-      style="height: 100%;"
-      :modules="modules"
-      :slides-per-view="3"
-      :space-between="spaceBetween"
-      :navigation="showIndicator"
-      :pagination="{ clickable: true }"
-      :scrollbar="{ draggable: true }"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
-      @mouseover="showIndicator = true"
-      @mouseleave="showIndicator = false"
-    >
-    <slot name="swiperSlide"></slot>
-  </swiper>
+  <div > 
+    <Carousel :items-to-show="2" snap-align="start">
+      <slot name="swiperSlide"></slot>
+      <template #addons>
+        <Navigation />
+      </template>
+    </Carousel>
+
+  </div>
 </template>
 
 <script lang="ts" setup>
-  import {ref } from "vue"
-  import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-  import { Swiper } from 'swiper/vue';
+import { Carousel, Navigation } from 'vue3-carousel'
+import 'vue3-carousel/dist/carousel.css'
 
-  import 'swiper/css';
-  import 'swiper/css/navigation';
 
-  defineProps<{
-    spaceBetween:number
-  }>();
-  
-  
-  const onSwiper = (swiper) => {
-    console.log(swiper);
-  };
-  const onSlideChange = () => {
-    console.log('slide change');
-  };
-  const modules = [Navigation, Pagination, Scrollbar, A11y];
-  const showIndicator = ref(false);
 
 </script>
 
-<style>
-.marginContainer{
-  margin: 0 20px;
-}
-.swiper-button-prev:after{
-  font-size: 20px;
-  position: absolute;
-  /* left: -4px; */
-  color: #bbb;
-  background: rgb(118, 118, 118);
-  padding: 4px;
-}
-.swiper-button-next:after{
-  font-size: 20px;
-  position: absolute;
-  /* right: -10px; */
-  color: #bbb;
-  background: rgb(118, 118, 118);
-  padding: 4px;
-}
+<style lang="less" scoped>
+
 </style>

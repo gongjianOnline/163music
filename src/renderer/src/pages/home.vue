@@ -4,6 +4,7 @@
     <HeaderComponents></HeaderComponents>
     <div class="swiperContainer">
       <BannerComponent></BannerComponent>
+      <!-- 推荐歌单 -->
       <SingleRowComponent>
         <template #titleName>推荐歌单</template>
         <template #slideComponent>
@@ -29,6 +30,9 @@
           </Slide>
         </template>
       </SingleRowComponent>
+      
+      <!--  -->
+
     </div>
     
   </div>
@@ -57,7 +61,6 @@ import { Slide } from 'vue3-carousel';
 .carousel__item{
   height: 100%;
   width: 100%;
-  border: 1px solid red;
   margin-left: 5px;
   margin-right: 5px;
 }

@@ -1,27 +1,27 @@
 <template>
-  <div class="swiperComponent">
-    <SwiperComponent :spaceBetween="320">
+  <div class="">
+    <SwiperComponent class="swiperContainer">
       <template #swiperSlide>
-        <swiper-slide class="swiperSlide">
-          <div>
-            <img class="swiperImg" src="/img/home1.jpg" alt="">
+        <Slide key="1" class="bigImgContainer">
+          <div class="carousel__item">
+            <img src="/img/home1.jpg" alt="" class="bigImg">
           </div>
-        </swiper-slide>
-        <swiper-slide class="swiperSlide">
-          <div>
-            <img class="swiperImg" src="/img/home2.jpg" alt="">
+        </Slide>
+        <Slide key="2" class="bigImgContainer">
+          <div class="carousel__item">
+            <img src="/img/home2.jpg" alt="" class="bigImg">
           </div>
-        </swiper-slide>
-        <swiper-slide class="fitSwiperSlide">
-          <div>
-            <img style="height: 153px;" class="swiperImg" src="/img/home3.jpg" alt="">
+        </Slide>
+        <Slide key="3" class="minImgContainer">
+          <div class="carousel__item">
+            <img src="/img/home3.jpg" alt="" class="bigImg">
           </div>
-        </swiper-slide>
-        <swiper-slide class="fitSwiperSlide">
-          <div>
-            <img style="height: 153px;" class="swiperImg" src="/img/home3.jpg" alt="">
+        </Slide>
+        <Slide key="4" class="minImgContainer">
+          <div class="carousel__item">
+            <img src="/img/home3.jpg" alt="" class="bigImg">
           </div>
-        </swiper-slide>
+        </Slide>
       </template>
     </SwiperComponent>
   </div>
@@ -29,39 +29,42 @@
 
 <script lang="ts" setup>
 import SwiperComponent from "../globalComponent/swiper.vue";
-import { SwiperSlide } from 'swiper/vue';
+import { Slide } from 'vue3-carousel';
 
 </script>
 
 <style lang="less" scoped>
-.swiperComponent{
-  margin-top: 22px;
-  width: 100%;
-  -webkit-app-region:no-drag;
+/* 轮播框架 */
+.swiperContainer:deep(.carousel__prev){
+  margin: 0px !important;
+  left: -27px !important;
 }
-/* 轮播内容容器 */
-.swiperSlide{
-  width:49% !important;
-  margin-right:10px !important;
-  // margin-left: 5px !important;
-  // padding-right:6px !important ;
-  height: 100%;
+.swiperContainer:deep(.carousel__next){
+  margin: 0px !important;
+  right: -27px !important;
 }
-.swiperSlide>div,
-.fitSwiperSlide>div{
+
+/* banner的大图 */
+.bigImgContainer{
+  width: 310px !important;
+  margin: 0px 10px;
+}
+.bigImgContainer:deep(.carousel__item),
+.minImgContainer:deep(.carousel__item)
+{
   width: 100%;
-  height: 100%;
-  border-radius: 10px;
+}
+.bigImg{
+  width: 100% !important;
+}
+
+/* banner小图 */
+.minImgContainer{
+  height: 150px;
+  width: 142px !important;
   overflow: hidden;
+  margin-right: 10px;
+  margin-left: 10px;
 }
-/* 副内容 */
-.fitSwiperSlide{
-  width: 23% !important;
-  height: 100% !important;
-  margin-right:10px !important;
-}
-.swiperImg{
-  width: 100%;
-  object-fit: cover;
-}
+
 </style>
