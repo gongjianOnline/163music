@@ -10,7 +10,7 @@
         </svg>
       </div>
     </div>
-    <Carousel :items-to-show="4" snap-align="start">
+    <Carousel :items-to-show="4" snap-align="start" :breakpoints="breakpoints">
       <slot name="slideComponent"></slot>
       <template #addons>
         <Navigation />
@@ -23,7 +23,21 @@
 
 <script lang="ts" setup>
 import { Carousel, Navigation } from 'vue3-carousel'
+import {reactive} from  "vue";
 import 'vue3-carousel/dist/carousel.css'
+
+// const :breakpoints="breakpoints"
+const breakpoints = reactive({
+  700: {
+    itemsToShow: 4,
+    snapAlign: 'center',
+  },
+  // 1024 and up
+  1024: {
+    itemsToShow: 7,
+    snapAlign: 'start',
+  },
+})
 </script>
 
 <style lang="less" scoped> 

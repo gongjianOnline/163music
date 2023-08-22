@@ -4,7 +4,17 @@
       <template #swiperSlide>
         <Slide key="1" class="bigImgContainer">
           <div class="carousel__item">
-            <img src="/img/home1.jpg" alt="" class="bigImg">
+            <Carousel>
+              <Slide v-for="slide in 10" :key="slide">
+                <div class="carousel__item">
+                  <img src="/img/home1.jpg" alt="" class="bigImg"> 
+                </div>
+              </Slide>
+
+              <template #addons>
+                <Pagination />
+              </template>
+            </Carousel>
           </div>
         </Slide>
         <Slide key="2" class="bigImgContainer">
@@ -29,7 +39,7 @@
 
 <script lang="ts" setup>
 import SwiperComponent from "../globalComponent/swiper.vue";
-import { Slide } from 'vue3-carousel';
+import { Carousel, Pagination, Slide } from 'vue3-carousel';
 
 </script>
 
@@ -53,6 +63,11 @@ import { Slide } from 'vue3-carousel';
 .minImgContainer:deep(.carousel__item)
 {
   width: 100%;
+}
+.bigImgContainer:deep(.carousel__pagination){
+  margin: 0px !important;
+  position: absolute;
+  bottom: 7px;
 }
 .bigImg{
   width: 100% !important;
