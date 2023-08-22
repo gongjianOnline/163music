@@ -54,5 +54,6 @@ $ pnpm build:linux
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
+  - songSheet.vue 歌单列表页面
 
 ​	

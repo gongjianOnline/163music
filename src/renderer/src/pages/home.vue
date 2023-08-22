@@ -11,7 +11,7 @@
         </template>
         <template #slideComponent>
           <Slide class="slideContent" v-for="index in 10" :key="index">
-            <div class="carousel__item">
+            <div class="carousel__item" @click="handelToSS">
               <Album urlImg="/img/home5.jpg" 
                 playNum="123.4" 
                 playTitle="2023那些超级好听流行音乐推荐(更新快)"></Album>
@@ -43,7 +43,8 @@ import SingleRowComponent from "../components/homeComponent/singleRowComponent.v
 import Album from "../components/globalComponent/album.vue";
 import Biserial from "../components/homeComponent/biserialComponent.vue";
 import { Slide } from 'vue3-carousel';
-import {reactive} from "vue"
+import {reactive} from "vue";
+import {useRouter} from 'vue-router';
 
 const biserialPageA = reactive([
   {
@@ -122,6 +123,13 @@ const biserialPageB = reactive([
     BPAAuthor:"周深"
   },
 ]);
+
+/* 跳转到歌单页面 */
+const router = useRouter();
+const handelToSS = ()=>{
+  router.push('/songSheet');
+}
+
 
 </script>
 
