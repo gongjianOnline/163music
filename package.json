@@ -27,7 +27,6 @@
     "element-plus": "^2.3.8",
     "element-ui": "^2.15.13",
     "qs": "^6.11.2",
-    "swiper": "^10.2.0",
     "vue-router": "4",
     "vue3-carousel": "^0.3.1"
   },

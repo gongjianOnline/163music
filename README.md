@@ -41,7 +41,8 @@ $ pnpm build:linux
 - components 组件部分
   - globalComponent 用于全局组件的封装
     - swiper 封装轮播组件,魔改成新版网易效果
-  
+    - 
+    
   - mainView 右侧主视图模块组件
     - headerComponents.vue 对搜索,用户信息,窗口的操作的组件封装
   - menuComponents 左侧视图组件封装

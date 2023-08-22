@@ -8,25 +8,12 @@
       <SingleRowComponent>
         <template #titleName>推荐歌单</template>
         <template #slideComponent>
-          <Slide class="slideContent">
+          <Slide class="slideContent" v-for="index in 10" :key="index">
             <div class="carousel__item">
-              <img src="/img/hone5.jpg" alt="">
+              <Album urlImg="/img/home5.jpg" 
+                playNum="123.4" 
+                playTitle="2023那些超级好听流行音乐推荐(更新快)"></Album>
             </div>
-          </Slide>
-          <Slide class="slideContent">
-            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
-          </Slide>
-          <Slide class="slideContent">
-            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
-          </Slide>
-          <Slide class="slideContent">
-            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
-          </Slide>
-          <Slide class="slideContent">
-            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
-          </Slide>
-          <Slide class="slideContent">
-            <div class="carousel__item"><img src="/img/hone5.jpg" alt=""></div>
           </Slide>
         </template>
       </SingleRowComponent>
@@ -46,6 +33,7 @@
 import HeaderComponents from  "../components/mainView/headerComponents.vue";
 import BannerComponent from "../components/homeComponent/bannerComponent.vue"
 import SingleRowComponent from "../components/homeComponent/singleRowComponent.vue"
+import Album from "../components/globalComponent/album.vue";
 import { Slide } from 'vue3-carousel';
 
 </script>
@@ -60,7 +48,7 @@ import { Slide } from 'vue3-carousel';
 }
 .carousel__item{
   height: 100%;
-  width: 100%;
+  width: 155px;
   margin-left: 5px;
   margin-right: 5px;
 }
