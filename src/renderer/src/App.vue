@@ -25,5 +25,15 @@
     overflow: hidden;
   }
 
+  /* 滚动条美化 */
+  *::-webkit-scrollbar {
+    width: 0px;
+    // height: 10px; // 高度写不写，都不影响，因为会根据内容的长度自动计算
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #ccc; // 滑块颜色
+    border-radius: 5px; // 滑块圆角
+  }
 
 </style>

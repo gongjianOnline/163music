@@ -6,7 +6,9 @@
       <BannerComponent></BannerComponent>
       <!-- 推荐歌单 -->
       <SingleRowComponent>
-        <template #titleName>推荐歌单</template>
+        <template #titleName>
+          <div class="singleTitleContent">推荐歌单</div>
+        </template>
         <template #slideComponent>
           <Slide class="slideContent" v-for="index in 10" :key="index">
             <div class="carousel__item">
@@ -18,7 +20,12 @@
         </template>
       </SingleRowComponent>
       
-      <!--  -->
+      <!-- 双列表歌单 -->
+      <Biserial
+      titleName="歌声里藏着故事"
+      :pageA="biserialPageA"
+      :pageB="biserialPageB"></Biserial>
+
 
     </div>
     
@@ -34,7 +41,87 @@ import HeaderComponents from  "../components/mainView/headerComponents.vue";
 import BannerComponent from "../components/homeComponent/bannerComponent.vue"
 import SingleRowComponent from "../components/homeComponent/singleRowComponent.vue"
 import Album from "../components/globalComponent/album.vue";
+import Biserial from "../components/homeComponent/biserialComponent.vue";
 import { Slide } from 'vue3-carousel';
+import {reactive} from "vue"
+
+const biserialPageA = reactive([
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+]);
+
+const biserialPageB = reactive([
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+  {
+    BPAImg:"/img/home6.jpg",
+    BPATitle:"听我说",
+    BPATag:'超81.5%人播放',
+    BPAAuthor:"周深"
+  },
+]);
 
 </script>
 
@@ -45,6 +132,11 @@ import { Slide } from 'vue3-carousel';
 .swiperContainer{
   padding: 30px 20px;
   -webkit-app-region:no-drag
+}
+.singleTitleContent{
+  font-size: 20px;
+  color: #283248;
+  font-weight: bold;
 }
 .carousel__item{
   height: 100%;
