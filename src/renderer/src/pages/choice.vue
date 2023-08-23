@@ -4,11 +4,11 @@
     <div class="swiperContainer"> 
       <!-- 二级菜单 -->
       <div class="choiceMenuContainer">
-        <div :class="{'choiceMenuActive':choiceMenuIndex==1}" @click="handelCMIndex(1)">精选</div>
-        <div :class="{'choiceMenuActive':choiceMenuIndex==2}" @click="handelCMIndex(2)">歌单广场</div>
-        <div :class="{'choiceMenuActive':choiceMenuIndex==3}" @click="handelCMIndex(3)">排行榜</div>
-        <div :class="{'choiceMenuActive':choiceMenuIndex==4}" @click="handelCMIndex(4)">歌手 </div>
-        <div :class="{'choiceMenuActive':choiceMenuIndex==5}" @click="handelCMIndex(5)">VIP </div>
+        <div :class="{'choiceMenuActive':choiceMenuIndex==1}" @click="handelCMIndex(1,'ChoiceIndex')">精选</div>
+        <div :class="{'choiceMenuActive':choiceMenuIndex==2}" @click="handelCMIndex(2,'ChoiceSquare')">歌单广场</div>
+        <div :class="{'choiceMenuActive':choiceMenuIndex==3}" @click="handelCMIndex(3,'')">排行榜</div>
+        <div :class="{'choiceMenuActive':choiceMenuIndex==4}" @click="handelCMIndex(4,'')">歌手 </div>
+        <div :class="{'choiceMenuActive':choiceMenuIndex==5}" @click="handelCMIndex(5,'')">VIP </div>
       </div>
       <!-- 三级视图 -->
       <div class="viewContainer">
@@ -24,11 +24,13 @@
 import HeaderComponents from "../components/mainView/headerComponents.vue"
 
 import {ref} from "vue";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 /* 菜单下标及事件 */
 const choiceMenuIndex = ref(1);
-const handelCMIndex = (index)=>{
+const handelCMIndex = (index,routerName)=>{
   choiceMenuIndex.value = index;
+  router.push({name:routerName});
 }
 
 </script>

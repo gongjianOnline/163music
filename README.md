@@ -56,6 +56,7 @@ $ pnpm build:linux
     - SSInfo.vue 专辑信息头部组件
   - choice 云音乐精选文件夹
     - index.vue 精选页面组件
+    - square.vue 歌单广场
   
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建

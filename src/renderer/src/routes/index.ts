@@ -6,6 +6,7 @@ import Home from "../pages/home.vue";
 import SongSheet from "../pages/songSheet.vue"
 import Choice from "../pages/choice.vue";
 import ChoiceIndex from "../components/choice/index.vue";
+import ChoiceSquare from "../components/choice/square.vue";
 
 const routes = [
   { 
@@ -32,6 +33,11 @@ const routes = [
             path:"",
             name:'ChoiceIndex',
             component:ChoiceIndex
+          },
+          {
+            path:"/choiceSquare",
+            name:"ChoiceSquare",
+            component:ChoiceSquare
           }
         ]
       },
