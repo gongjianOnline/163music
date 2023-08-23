@@ -65,6 +65,7 @@ const handelTabs = (index)=>{
   position: sticky;
   top: 70px;
   background: #f7f9fc;
+  z-index: 5;
 }
 .tabsContainer div{
   margin-right: 70px;
