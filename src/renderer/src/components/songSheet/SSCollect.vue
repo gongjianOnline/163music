@@ -27,8 +27,12 @@
   align-items: center;
   margin-top: 10px;
   padding: 10px 0px;
-  background: #fff;
   border-radius: 10px;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.SSCItem:hover{
+  background: #fff;
 }
 /* 收藏者图片 */
 .SSCImg{

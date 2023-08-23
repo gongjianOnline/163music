@@ -4,7 +4,7 @@
     <!-- 路由&搜索框 -->
     <div class="leftComponent">
       <!-- 后退按钮 -->
-      <div class="backContainer">
+      <div class="backContainer" @click="handelBack">
         <svg class="icon backIcon" aria-hidden="true">
           <use xlink:href="#icon-fanhui"></use>
         </svg>
@@ -78,6 +78,8 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
+import {useRouter} from 'vue-router';
+const router = useRouter();
 
 const isMaximized = ref(false);
 
@@ -97,6 +99,10 @@ const handelMainWindow =async (btnType)=>{
   }
 }
 
+/* 后退路由 */
+const handelBack = ()=>{
+  router.back();
+}
 
 </script>
 
