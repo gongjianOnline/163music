@@ -64,8 +64,10 @@
       <span>355</span>
     </div>
   </div>
-
+  <!-- 歌曲列表模块 -->
   <TableComponent v-if="tabsIndex == 0"></TableComponent>
+  <!-- 评论模块 -->
+  <CommitComponent v-if="tabsIndex == 1"></CommitComponent>
 
 
 
@@ -73,7 +75,9 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
-import TableComponent from "../globalComponent/table.vue"
+import TableComponent from "../globalComponent/table.vue";
+import CommitComponent from "../globalComponent/commit.vue";
+
 
 const tabsIndex = ref(0);
 const handelTabs = (index)=>{
@@ -213,6 +217,9 @@ const handelTabs = (index)=>{
   width: 100%;
   margin-top: 20px;
   padding: 10px;
+  position: sticky;
+  top: 70px;
+  background: #f7f9fc;
 }
 .tabsContainer div{
   margin-right: 70px;
