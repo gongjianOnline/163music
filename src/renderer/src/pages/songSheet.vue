@@ -24,7 +24,8 @@
       <TableComponent v-if="tabsIndex == 0"></TableComponent>
       <!-- 评论模块 -->
       <CommitComponent v-if="tabsIndex == 1"></CommitComponent>
-
+      <!-- 收藏者列表 -->
+      <SSCollect v-if="tabsIndex == 2"></SSCollect>
 
     </div>
     
@@ -36,6 +37,7 @@ import HeaderComponents from "../components/mainView/headerComponents.vue";
 import SSInfo from "../components/songSheet/SSInfo.vue";
 import TableComponent from "../components/globalComponent/table.vue";
 import CommitComponent from "../components/globalComponent/commit.vue";
+import SSCollect from "../components/songSheet/SSCollect.vue"
 import {ref} from "vue";
 
 const tabsIndex = ref(0);
