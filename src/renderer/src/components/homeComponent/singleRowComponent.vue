@@ -10,7 +10,7 @@
         </svg>
       </div>
     </div>
-    <Carousel :items-to-show="4" snap-align="start" :breakpoints="breakpoints">
+    <Carousel :items-to-show="4" :items-to-scroll="3" snap-align="start" :breakpoints="breakpoints">
       <slot name="slideComponent"></slot>
       <template #addons>
         <Navigation />

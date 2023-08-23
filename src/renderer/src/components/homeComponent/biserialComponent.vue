@@ -1,6 +1,6 @@
 <template>
   <div class="biserialContainer">
-    <div class="titleName">歌声里藏着故事</div>
+    <div class="titleName">{{titleName}}</div>
     <div class="swiperContainer">
       <Carousel>
         <Slide key="1">

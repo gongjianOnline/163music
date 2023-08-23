@@ -11,7 +11,7 @@
     <div v-for="(item,index) in currentMenu" :key="index">
       <div class="rowComponent" 
         :class="{'rowComponentActive':index == currentMenuIndex}"
-        @click="handelCurrentMenuClick(index)"
+        @click="handelCurrentMenuClick(index,item)"
         v-if="item.text !== '分割'">
         <!-- 菜单 -->
         <div> 
@@ -35,17 +35,21 @@
 </template>
 <script lang="ts" setup>
 import {reactive, ref} from "vue"
+import { useRouter } from "vue-router";
+const router = useRouter();
 /* 通用菜单下标 */
 const currentMenuIndex = ref(0);
 /* 通用菜单 */
 const currentMenu = reactive([
   {
     "text":"为我推荐",
-    "icon":"#icon-rementuijian"
+    "icon":"#icon-rementuijian",
+    "routerName":'home',
   },
   {
     "text":"云音乐精选",
-    "icon":"#icon-weibiaoti-8_huaban1"
+    "icon":"#icon-weibiaoti-8_huaban1",
+    "routerName":"Choice"
   },
   {
     "text":"播客",
@@ -80,9 +84,10 @@ const currentMenu = reactive([
   },
 ])
 /* 通用菜单事件 */
-const handelCurrentMenuClick = (index)=>{
+const handelCurrentMenuClick = (index,item)=>{
   if(index == 4){return}
   currentMenuIndex.value = index;
+  router.replace({name:item.routerName})
 }
 
 

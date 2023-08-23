@@ -51,13 +51,16 @@ $ pnpm build:linux
   - homeComponent 首页组件存放文件
     - bannerComponent.vue 首页bannber轮播图
     - singleRowComponent.vue 创建的单行轮播组件
-  - SSCollect
+  - SSCollect 专辑组件文件夹
     - SSCollect.vue 专辑中收藏列表组件
     - SSInfo.vue 专辑信息头部组件
+  - choice 云音乐精选文件夹
+    - index.vue 精选页面组件
   
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
   - songSheet.vue 歌单列表页面
+  - choice.vue 精选推荐
 
 ​	
