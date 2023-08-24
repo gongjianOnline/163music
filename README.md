@@ -57,6 +57,8 @@ $ pnpm build:linux
   - choice 云音乐精选文件夹
     - index.vue 精选页面组件
     - square.vue 歌单广场
+    - ChoiceSongSheet.vue 精选歌单中的其他标签列表页
+    - squareRecommend.vue 精选歌单中推荐标签的列表页
   
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建

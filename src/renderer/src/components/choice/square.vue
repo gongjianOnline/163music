@@ -29,17 +29,19 @@
               :key="tagesIndex">{{ tagsItem.text}}</div>
           </div>
         </el-popover>
-
-
         
     </div>
 
+    <SquareRecommend v-if="tagsIndex == 0"></SquareRecommend>
+    <ChoiceSongSheet v-if="tagsIndex != 0"></ChoiceSongSheet>
 
   </div>
 </template>
 
 <script lang="ts" setup>
 import {reactive,ref} from "vue";
+import SquareRecommend from "./squareRecommend.vue"
+import ChoiceSongSheet from "./ChoiceSongSheet.vue"
 
 const tagsIndex = ref(0);
 const tagsData = reactive([
