@@ -7,6 +7,7 @@ import SongSheet from "../pages/songSheet.vue"
 import Choice from "../pages/choice.vue";
 import ChoiceIndex from "../components/choice/index.vue";
 import ChoiceSquare from "../components/choice/square.vue";
+import ChoiceRanking from "../components/choice/ranking.vue";
 
 const routes = [
   { 
@@ -38,7 +39,13 @@ const routes = [
             path:"/choiceSquare",
             name:"ChoiceSquare",
             component:ChoiceSquare
-          }
+          },
+          {
+            path:"/choiceRanking",
+            name:"ChoiceRanking",
+            component:ChoiceRanking
+          },
+          
         ]
       },
     ] 

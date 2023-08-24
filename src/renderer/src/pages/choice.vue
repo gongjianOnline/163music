@@ -6,7 +6,7 @@
       <div class="choiceMenuContainer">
         <div :class="{'choiceMenuActive':choiceMenuIndex==1}" @click="handelCMIndex(1,'ChoiceIndex')">精选</div>
         <div :class="{'choiceMenuActive':choiceMenuIndex==2}" @click="handelCMIndex(2,'ChoiceSquare')">歌单广场</div>
-        <div :class="{'choiceMenuActive':choiceMenuIndex==3}" @click="handelCMIndex(3,'')">排行榜</div>
+        <div :class="{'choiceMenuActive':choiceMenuIndex==3}" @click="handelCMIndex(3,'ChoiceRanking')">排行榜</div>
         <div :class="{'choiceMenuActive':choiceMenuIndex==4}" @click="handelCMIndex(4,'')">歌手 </div>
         <div :class="{'choiceMenuActive':choiceMenuIndex==5}" @click="handelCMIndex(5,'')">VIP </div>
       </div>

@@ -43,6 +43,7 @@ $ pnpm build:linux
     - swiper 封装轮播组件,魔改成新版网易效果
     - album 封装专辑模块组件
     - commit 封装评论组件
+    - piece 封装块级组件（排行榜）
     
   - mainView 右侧主视图模块组件
     - headerComponents.vue 对搜索,用户信息,窗口的操作的组件封装
@@ -57,8 +58,9 @@ $ pnpm build:linux
   - choice 云音乐精选文件夹
     - index.vue 精选页面组件
     - square.vue 歌单广场
-    - ChoiceSongSheet.vue 精选歌单中的其他标签列表页
-    - squareRecommend.vue 精选歌单中推荐标签的列表页
+    - ChoiceSongSheet.vue 精选歌单中的其他标签列表组件
+    - squareRecommend.vue 精选歌单中推荐标签的列表组件
+    - ranking.vue 精选歌单中排行榜页面
   
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
