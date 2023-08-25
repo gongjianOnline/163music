@@ -8,6 +8,7 @@ import Choice from "../pages/choice.vue";
 import ChoiceIndex from "../components/choice/index.vue";
 import ChoiceSquare from "../components/choice/square.vue";
 import ChoiceRanking from "../components/choice/ranking.vue";
+import ChoiceSinger from "../components/choice/singer.vue";
 
 const routes = [
   { 
@@ -45,6 +46,12 @@ const routes = [
             name:"ChoiceRanking",
             component:ChoiceRanking
           },
+          {
+            path:"/choiceSinger",
+            name:"ChoiceSinger",
+            component:ChoiceSinger
+          },
+          
           
         ]
       },

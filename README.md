@@ -45,7 +45,6 @@ $ pnpm build:linux
     - commit 封装评论组件
     - piece 封装块级组件（排行榜）
     - entry 增长排行榜小列表组件
-    
   - mainView 右侧主视图模块组件
     - headerComponents.vue 对搜索,用户信息,窗口的操作的组件封装
   - menuComponents 左侧视图组件封装
@@ -62,7 +61,7 @@ $ pnpm build:linux
     - ChoiceSongSheet.vue 精选歌单中的其他标签列表组件
     - squareRecommend.vue 精选歌单中推荐标签的列表组件
     - ranking.vue 精选歌单中排行榜页面
-  
+    - singer.vue 歌手页面
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
