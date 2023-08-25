@@ -9,6 +9,7 @@ import ChoiceIndex from "../components/choice/index.vue";
 import ChoiceSquare from "../components/choice/square.vue";
 import ChoiceRanking from "../components/choice/ranking.vue";
 import ChoiceSinger from "../components/choice/singer.vue";
+import ChoiceVIP from "../components/choice/vipComponent.vue";
 
 const routes = [
   { 
@@ -51,7 +52,11 @@ const routes = [
             name:"ChoiceSinger",
             component:ChoiceSinger
           },
-          
+          {
+            path:"/choiceVIP",
+            name:"ChoiceVIP",
+            component:ChoiceVIP
+          },
           
         ]
       },

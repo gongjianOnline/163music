@@ -8,7 +8,7 @@
         <div :class="{'choiceMenuActive':choiceMenuIndex==2}" @click="handelCMIndex(2,'ChoiceSquare')">歌单广场</div>
         <div :class="{'choiceMenuActive':choiceMenuIndex==3}" @click="handelCMIndex(3,'ChoiceRanking')">排行榜</div>
         <div :class="{'choiceMenuActive':choiceMenuIndex==4}" @click="handelCMIndex(4,'ChoiceSinger')">歌手 </div>
-        <div :class="{'choiceMenuActive':choiceMenuIndex==5}" @click="handelCMIndex(5,'')">VIP </div>
+        <!-- <div :class="{'choiceMenuActive':choiceMenuIndex==5}" @click="handelCMIndex(5,'ChoiceVIP')">VIP </div> -->
       </div>
       <!-- 三级视图 -->
       <div class="viewContainer">
