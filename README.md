@@ -44,6 +44,7 @@ $ pnpm build:linux
     - album 封装专辑模块组件
     - commit 封装评论组件
     - piece 封装块级组件（排行榜）
+    - entry 增长排行榜小列表组件
     
   - mainView 右侧主视图模块组件
     - headerComponents.vue 对搜索,用户信息,窗口的操作的组件封装
