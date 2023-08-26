@@ -58,7 +58,8 @@ const currentMenu = reactive([
   },
   {
     "text":"社区",
-    "icon":"#icon-shequ"
+    "icon":"#icon-shequ",
+    "routerName":"Community"
   },
   {
     "text":"分割"

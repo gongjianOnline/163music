@@ -11,6 +11,7 @@ import ChoiceRanking from "../components/choice/ranking.vue";
 import ChoiceSinger from "../components/choice/singer.vue";
 import ChoiceVIP from "../components/choice/vipComponent.vue";
 import Podcast from "../pages/podcast.vue";
+import Community from "../pages/community.vue";
 
 
 const routes = [
@@ -66,7 +67,13 @@ const routes = [
         path:"/podcast",
         name:"Podcast",
         component:Podcast
-      }
+      },
+      {
+        path:"/community",
+        name:"Community",
+        component:Community
+      },
+      
     ] 
   },
 ]

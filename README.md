@@ -70,5 +70,6 @@ $ pnpm build:linux
   - songSheet.vue 歌单列表页面
   - choice.vue 精选推荐
   - podcast.vue 播客页面
+  - community.vue 社区页面
 
 ​	
