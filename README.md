@@ -64,6 +64,8 @@ $ pnpm build:linux
     - singer.vue 歌手页面
   - podcastComponent 播客组件
     - newsComponent.vue 播客组件的新闻列表
+  - commity 评论列表
+    - commitComponent.vue 评论单项列表组件
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
