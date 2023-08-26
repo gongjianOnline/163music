@@ -53,7 +53,8 @@ const currentMenu = reactive([
   },
   {
     "text":"播客",
-    "icon":"#icon-tianchongxing-"
+    "icon":"#icon-tianchongxing-",
+    "routerName":"Podcast"
   },
   {
     "text":"社区",

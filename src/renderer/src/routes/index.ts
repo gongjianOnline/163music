@@ -10,6 +10,8 @@ import ChoiceSquare from "../components/choice/square.vue";
 import ChoiceRanking from "../components/choice/ranking.vue";
 import ChoiceSinger from "../components/choice/singer.vue";
 import ChoiceVIP from "../components/choice/vipComponent.vue";
+import Podcast from "../pages/podcast.vue";
+
 
 const routes = [
   { 
@@ -60,6 +62,11 @@ const routes = [
           
         ]
       },
+      {
+        path:"/podcast",
+        name:"Podcast",
+        component:Podcast
+      }
     ] 
   },
 ]
