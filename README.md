@@ -62,10 +62,13 @@ $ pnpm build:linux
     - squareRecommend.vue 精选歌单中推荐标签的列表组件
     - ranking.vue 精选歌单中排行榜页面
     - singer.vue 歌手页面
+  - podcastComponent 播客组件
+    - newsComponent.vue 播客组件的新闻列表
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
   - songSheet.vue 歌单列表页面
   - choice.vue 精选推荐
+  - podcast.vue 播客页面
 
 ​	

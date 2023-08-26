@@ -27,6 +27,12 @@
         </template>
       </SingleRowComponent>
 
+      <!-- 新闻资讯 -->
+      <NewsComponent
+        titleName="新闻推荐">
+
+      </NewsComponent>
+
 
     </div>
   </div>
@@ -36,6 +42,7 @@
 import HeaderComponents from "../components/mainView/headerComponents.vue";
 import SingleRowComponent from "../components/homeComponent/singleRowComponent.vue";
 import Album from "../components/globalComponent/album.vue";
+import NewsComponent from "../components/podcastComponent/newsComponent.vue";
 import { Slide } from 'vue3-carousel';
 import {ref,reactive} from  "vue";
 
@@ -51,6 +58,7 @@ const tagsData = reactive([
 ])
 const handelTags = (index)=>{
   tagsIndex.value = index;
+  
 }
 
 /* 推荐内容事件 */
@@ -106,5 +114,6 @@ const handelToSS = ()=>{
   width: 100%;
   height: 100%;
 }
+
 
 </style>
