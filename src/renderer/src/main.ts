@@ -5,7 +5,6 @@ import router from "./routes/index"
 import 'element-plus/dist/index.css'
 
 
-
 createApp(App)
 .use(router)
 .use(ElementPlus)
