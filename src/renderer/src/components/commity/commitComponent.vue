@@ -52,15 +52,11 @@
         </div>
         <div class="commitInfo">
           <div>
-            <div>网易云音乐</div>
-            <div>2023那些好听到单曲循环的歌 制作不易 喜欢的话点个收藏吧~s</div>
+            <div class="CTitle">网易云音乐</div>
+            <div class="CCommit">2023那些好听到单曲循环的歌 制作不易 喜欢的话点个收藏吧~s</div>
           </div>
           <div class="commitDateContainer"> 
-            <div>date</div>
-            <div> 
-              <div>svg</div>
-              <div>svg</div>
-            </div>
+            <div>13:15</div>
           </div>
   
         </div>
@@ -200,17 +196,34 @@ const commitInputValue = ref("");
 /* 评论列表 */
 .commitList{
   display: flex;
-  flex-direction: column;
   padding: 10px;
-  border: 1px solid red;
   margin-top: 10px;
+  border-bottom: 1px solid #f2f3f4;
 }
 .commitList>div:nth-child(1){
   width: 40px;
   height: 40px;
+  margin-right: 10px;
 }
 .commitList>div:nth-child(1) img{
   width: 100%;
   height: 100%;
+}
+.CTitle{
+  font-size: 14px;
+  color: #5975b2;
+  margin-bottom: 10px;
+
+}
+.CCommit{
+  font-size: 14px;
+  color: #3d465a;
+  margin-bottom: 10px;
+}
+/* 发表时间 */
+.commitDateContainer{
+  font-size: 12px;
+  color: #a9adb6;
+  margin-bottom: 10px;
 }
 </style>
