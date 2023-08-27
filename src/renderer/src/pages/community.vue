@@ -4,7 +4,7 @@
     <div class="mainView">
       <div class="titleContainer">
         <div>关注</div>
-        <div>
+        <div @click="handleOpenDialog">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-bianjisekuai"></use>
           </svg>
@@ -22,11 +22,26 @@
     </div>
   </div>
 
+<!-- 发布模态框 -->
+<CommityRelease 
+    :dialogVisible.sync="commitDialogDialog"
+    @handel-close="handleDialog"></CommityRelease>
+
 </template>
 
 <script lang="ts" setup>
+import {ref} from "vue"
 import HeaderComponents from "../components/mainView/headerComponents.vue";
 import CommitComponent from "../components/commity/commitComponent.vue";
+import CommityRelease from "../components/commity/commityRelease.vue";
+/* 模态框 */
+const commitDialogDialog = ref(false);
+const handleDialog = (status:boolean)=>{
+  commitDialogDialog.value = status;
+}
+const handleOpenDialog = ()=>{
+  commitDialogDialog.value = true;
+}
 
 </script>
 

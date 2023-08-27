@@ -27,7 +27,7 @@
         </svg>
       </div>
     </div>
-
+    <!-- 评论区 -->
     <div v-if="isShowCommitStatus"
       class="otherCommit"> 
       <div class="OCTitle">
@@ -61,19 +61,17 @@
   
         </div>
       </div>
-
     </div>
-
-    
-
 
   </div>
 
+  
 
 </template>
 
 <script lang="ts" setup>
 import {ref} from "vue";
+
 
 /* 是否显示评论 */
 const isShowCommitStatus = ref(false)
