@@ -66,7 +66,8 @@ const currentMenu = reactive([
   },
   {
     "text":"我喜欢的音乐",
-    "icon":"#icon-tuijian1"
+    "icon":"#icon-tuijian1",
+    "routerName":"SongSheet"
   },
   {
     "text":"最近播放",
