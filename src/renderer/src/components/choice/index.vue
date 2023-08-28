@@ -7,7 +7,8 @@
         <template #slideComponent>
           <Slide class="slideContent" v-for="index in 10" :key="index">
             <div class="carousel__item" @click="handelToSS">
-              <Album urlImg="/img/home5.jpg" 
+              <Album 
+                urlImg="/img/home5.jpg" 
                 playNum="123.4" 
                 playTitle="2023那些超级好听流行音乐推荐(更新快)"></Album>
             </div>

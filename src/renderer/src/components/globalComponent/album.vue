@@ -2,7 +2,7 @@
   <div class="albumContainer" :style="{ '--urlImg': `url(${urlImg})` }">
     <!-- 图片 -->
     <div class="albumImgContainer">
-      <img class="albumBGImg" :src="urlImg" alt="">
+      <img class="albumBGImg" src="/img/home5.jpg" alt="">
       <!-- 遮罩层 -->
       <div class="maskContainer">
         <svg class="icon" aria-hidden="true">
@@ -72,10 +72,12 @@ withDefaults(defineProps<{
   width: 100%;
   height: 77%;
   position: relative;
+  overflow: hidden;
 }
 .albumBGImg{
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 }
 .albumContainer:hover  .maskContainer{
   opacity:1 !important
