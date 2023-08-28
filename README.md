@@ -67,6 +67,8 @@ $ pnpm build:linux
   - commity 评论列表
     - commitComponent.vue 评论单项列表组件
     - commityRelease.vue 发布动态模态框
+  - audioComponent 播放器组件
+    - index.vue 播放器组件
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面

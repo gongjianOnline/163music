@@ -15,12 +15,13 @@
   </div>
   <!-- 播放器 -->
   <div class="audioContainer"> 
-
+    <AudioComponent></AudioComponent>
   </div>
 </template>
 
 <script lang="ts" setup>
-import MenuComponents from "../components/menuComponents/index.vue"
+import MenuComponents from "../components/menuComponents/index.vue";
+import AudioComponent from "../components/audioComponent/index.vue";
 
 </script>
 
@@ -35,6 +36,7 @@ import MenuComponents from "../components/menuComponents/index.vue"
   width: 100%;
   height: 80px;
   background: RGB(251,251,252);
+  overflow: hidden;
 }
 
 /* 左视图菜单 */

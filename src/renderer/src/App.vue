@@ -8,10 +8,15 @@
 
 <style lang="less" >
   @import "./assets/css/normalize.css";
+  .el-slider,:root{
+    --el-slider-button-size:8px !important;
+    --el-color-primary:#fc3d49 !important;
+    --el-menu-active-color:#fc3d49 !important;
+    --el-menu-hover-text-color:#fc3d49 !important;
+  }
   body{
     --colorHover:#e4e8ec;
   }
-
   *{
     box-sizing: border-box;
   }
