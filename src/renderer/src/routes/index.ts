@@ -12,6 +12,7 @@ import ChoiceSinger from "../components/choice/singer.vue";
 import ChoiceVIP from "../components/choice/vipComponent.vue";
 import Podcast from "../pages/podcast.vue";
 import Community from "../pages/community.vue";
+import LocalMusic from "../pages/localMusic.vue"
 
 
 const routes = [
@@ -73,7 +74,11 @@ const routes = [
         name:"Community",
         component:Community
       },
-      
+      {
+        path:"/localMusic",
+        name:"LocalMusic",
+        component:LocalMusic
+      }
     ] 
   },
 ]

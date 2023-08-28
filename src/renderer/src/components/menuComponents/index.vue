@@ -71,7 +71,8 @@ const currentMenu = reactive([
   },
   {
     "text":"本地音乐",
-    "icon":"#icon-xiazai2"
+    "icon":"#icon-xiazai2",
+    "routerName":"LocalMusic"
   },
 ])
 /* 通用菜单事件 */

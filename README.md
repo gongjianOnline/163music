@@ -74,5 +74,6 @@ $ pnpm build:linux
   - choice.vue 精选推荐
   - podcast.vue 播客页面
   - community.vue 社区页面
+  - localMusic.vue 本地音乐页面
 
 ​	
