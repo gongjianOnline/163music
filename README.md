@@ -69,6 +69,7 @@ $ pnpm build:linux
     - commityRelease.vue 发布动态模态框
   - audioComponent 播放器组件
     - index.vue 播放器组件
+    - playList.vue 播放器列表组件
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
