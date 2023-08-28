@@ -2,7 +2,9 @@
   <div class="audioContainer">
     <!-- 播放信息 -->
     <div class="audioInfoContainer"> 
-      <div class="AIFImgContainer"></div>
+      <div class="AIFImgContainer">
+        <img src="/img/home8.jpg" alt="">
+      </div>
       <div class="AIFTitleContainer">
         <div class="AIFTitle">
           <!-- <marquee behavior="scroll" direction="left"></marquee> -->
@@ -55,7 +57,7 @@
 
     <!-- 音量及列表 -->
     <div class="volContainer">
-      <div class="playListIcon">
+      <div class="playListIcon" @click="handelPlayList">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-liebiao"></use>
         </svg>
@@ -72,17 +74,26 @@
             :show-tooltip="false"/>
         </div>
       </div>
-
     </div>
 
-
   </div>
+  <PlayList :drawer="playStatus" @handel-close="handleDialog"></PlayList>
 </template>
 <script lang="ts" setup>
 import {ref} from "vue";
+import PlayList from "./playList.vue"
 
 const sliderValue = ref(0);
-const volValue = ref(0)
+const volValue = ref(0);
+
+/* 播放列表 */
+const playStatus = ref(false);
+const handelPlayList = ()=>{
+  playStatus.value = true
+}
+const handleDialog = (status)=>{
+  playStatus.value = status;
+}
 
 </script>
 
@@ -101,8 +112,14 @@ const volValue = ref(0)
 .AIFImgContainer{
   width: 50px;
   height: 50px;
-  padding: 10px;
+  padding: 8px;
   background: #121212;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.AIFImgContainer>img{
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 .AIFTitleContainer{
@@ -131,6 +148,7 @@ const volValue = ref(0)
 .AIFoperate .icon{
   font-size: 18px;
   cursor: pointer;
+  color: #7c828f;
 }
 
 /* 控制器 */
