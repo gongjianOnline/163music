@@ -25,7 +25,7 @@
       <!-- 用户模块 -->
       <div class="userContainer">
         <div class="userImgContainer"></div>
-        <div class="userNameContent">未登录</div>
+        <div class="userNameContent" @click="handleLogin">未登录</div>
       </div>
       <!-- 用户相关操作 -->
       <div class="userIconContainer">
@@ -73,16 +73,20 @@
 
   </div>
 
+  <LoginComponent 
+    :dialogVisible.sync="dialogVisible"
+    @handle-close="handleClose"></LoginComponent>
 
 </template>
 
 <script lang="ts" setup>
 import {ref} from "vue"
 import {useRouter} from 'vue-router';
+import LoginComponent from "../loginComponent/index.vue";
 const router = useRouter();
-
+/* 判断是否是最大化 */
 const isMaximized = ref(false);
-
+/* 缩小&放大&关闭,主进程通信 */
 const handelMainWindow =async (btnType)=>{
   switch (btnType) {
     case "mini":
@@ -102,6 +106,15 @@ const handelMainWindow =async (btnType)=>{
 /* 后退路由 */
 const handelBack = ()=>{
   router.back();
+}
+
+/* 登录 */
+const dialogVisible = ref(false);
+const handleLogin = ()=>{
+  dialogVisible.value = true;
+}
+const handleClose = (status)=>{
+  dialogVisible.value = status
 }
 
 </script>

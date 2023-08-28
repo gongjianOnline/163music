@@ -51,7 +51,6 @@
 </template>
 
 <script lang="ts" setup>
-import { handleError } from 'vue';
 const emit = defineEmits<{
   (e:"handel-Close",name:boolean):void
 }>();
