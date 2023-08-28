@@ -70,19 +70,7 @@ const currentMenu = reactive([
     "routerName":"SongSheet"
   },
   {
-    "text":"最近播放",
-    "icon":"#icon-lishixiao"
-  },
-  {
-    "text":"我的播客",
-    "icon":"#icon-cell_tower"
-  },
-  {
-    "text":"我的收藏",
-    "icon":"#icon-shoucang"
-  },
-  {
-    "text":"下载管理",
+    "text":"本地音乐",
     "icon":"#icon-xiazai2"
   },
 ])
