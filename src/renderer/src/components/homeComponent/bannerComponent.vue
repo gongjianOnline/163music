@@ -2,36 +2,11 @@
   <div class="">
     <SwiperComponent class="swiperContainer">
       <template #swiperSlide>
-        <!-- <Slide key="1" class="bigImgContainer">
-          <div class="carousel__item">
-            <Carousel>
-              <Slide v-for="(item,index) in bannerList.data" :key="index">
-                <div class="carousel__item">
-                  <img :src="item.imageUrl" alt="" class="bigImg"> 
-                </div>
-              </Slide>
-
-              <template #addons>
-                <Pagination />
-              </template>
-            </Carousel>
-          </div>
-        </Slide> -->
         <Slide class="bigImgContainer" v-for="(item,index) in bannerList.data" :key="index">
           <div class="carousel__item">
             <img :src="item.imageUrl" alt="" class="bigImg">
           </div>
         </Slide>
-        <!-- <Slide key="3" class="minImgContainer">
-          <div class="carousel__item">
-            <img src="/img/home3.jpg" alt="" class="bigImg">
-          </div>
-        </Slide>
-        <Slide key="4" class="minImgContainer">
-          <div class="carousel__item">
-            <img src="/img/home3.jpg" alt="" class="bigImg">
-          </div>
-        </Slide> -->
       </template>
     </SwiperComponent>
   </div>
