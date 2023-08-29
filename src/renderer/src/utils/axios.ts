@@ -3,10 +3,10 @@ import axios from 'axios'
 // 根据环境变量区分接口的默认地址
 switch (process.env.NODE_ENV) {
   case 'development':
-    axios.defaults.baseURL = '开发环境的地址'
+    axios.defaults.baseURL = '/163'
     break
   case 'production':
-    axios.defaults.baseURL = '生产环境的地址'
+    axios.defaults.baseURL = 'http://music.gjweb.pro/'
     break
 }
 

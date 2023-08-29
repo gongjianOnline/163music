@@ -19,7 +19,7 @@ export function post(url, data, error="") {
   })
 }
 
-export function get(url, data, error) {
+export function get(url, data, error="") {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',

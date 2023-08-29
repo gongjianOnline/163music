@@ -2,12 +2,12 @@
   <div class="">
     <SwiperComponent class="swiperContainer">
       <template #swiperSlide>
-        <Slide key="1" class="bigImgContainer">
+        <!-- <Slide key="1" class="bigImgContainer">
           <div class="carousel__item">
             <Carousel>
-              <Slide v-for="slide in 10" :key="slide">
+              <Slide v-for="(item,index) in bannerList.data" :key="index">
                 <div class="carousel__item">
-                  <img src="/img/home1.jpg" alt="" class="bigImg"> 
+                  <img :src="item.imageUrl" alt="" class="bigImg"> 
                 </div>
               </Slide>
 
@@ -16,13 +16,13 @@
               </template>
             </Carousel>
           </div>
-        </Slide>
-        <Slide key="2" class="bigImgContainer">
+        </Slide> -->
+        <Slide class="bigImgContainer" v-for="(item,index) in bannerList.data" :key="index">
           <div class="carousel__item">
-            <img src="/img/home2.jpg" alt="" class="bigImg">
+            <img :src="item.imageUrl" alt="" class="bigImg">
           </div>
         </Slide>
-        <Slide key="3" class="minImgContainer">
+        <!-- <Slide key="3" class="minImgContainer">
           <div class="carousel__item">
             <img src="/img/home3.jpg" alt="" class="bigImg">
           </div>
@@ -31,7 +31,7 @@
           <div class="carousel__item">
             <img src="/img/home3.jpg" alt="" class="bigImg">
           </div>
-        </Slide>
+        </Slide> -->
       </template>
     </SwiperComponent>
   </div>
@@ -39,8 +39,25 @@
 
 <script lang="ts" setup>
 import SwiperComponent from "../globalComponent/swiper.vue";
-import { Carousel, Pagination, Slide } from 'vue3-carousel';
+import { Slide } from 'vue3-carousel';
+import api from "../../api/api";
+import { reactive } from "vue";
+import {Banner,bannerData} from "../../module/bannerData";
 
+/* 接口调用  */
+reactive<{ data: Banner[] }>({ data: [] });
+const bannerList = reactive<{data:Banner[]}>({data:[]});
+const getBannerFun = ()=>{
+  api.homeApi.getBanner().then((response)=>{
+    const res = response as bannerData;
+    bannerList.data = res.banners;
+  })
+}
+
+
+
+
+getBannerFun();
 </script>
 
 <style lang="less" scoped>
@@ -71,6 +88,7 @@ import { Carousel, Pagination, Slide } from 'vue3-carousel';
 }
 .bigImg{
   width: 100% !important;
+  border-radius: 10px !important;
 }
 
 /* banner小图 */

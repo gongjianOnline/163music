@@ -72,6 +72,9 @@ $ pnpm build:linux
     - playList.vue 播放器列表组件
   - loginComponent 登录组件
     - index.vue 登录组件
+- module 数据模型文件夹
+  - bannerData.ts  banner的数据模型
+
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
