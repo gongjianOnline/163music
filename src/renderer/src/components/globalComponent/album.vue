@@ -2,7 +2,7 @@
   <div class="albumContainer" :style="{ '--urlImg': `url(${urlImg})` }">
     <!-- 图片 -->
     <div class="albumImgContainer">
-      <img class="albumBGImg" src="/img/home5.jpg" alt="">
+      <img class="albumBGImg" :src="urlImg" alt="">
       <!-- 遮罩层 -->
       <div class="maskContainer">
         <svg class="icon" aria-hidden="true">
@@ -34,11 +34,11 @@
 <script lang="ts" setup>
 withDefaults(defineProps<{
   urlImg:string,
-  playNum:string,
+  playNum:number,
   playTitle:string
 }>(),{
   urlImg:"/img/home5.jpg",
-  playNum:"123.5",
+  playNum:123.5,
   playTitle:"2023那些超级好听流行音乐推荐(更新快)",
 })
 

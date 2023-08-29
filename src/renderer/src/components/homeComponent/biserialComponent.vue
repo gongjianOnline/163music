@@ -5,16 +5,16 @@
       <Carousel>
         <Slide key="1">
           <div class="pageContainer" >
-            <div class="pageContainerItem" v-for="(item,index) in pageA" :key="index">
+            <div class="pageContainerItem" v-for="(item) in pageA" :key="item.id">
               <!-- 图片 -->
               <div class="pageContainerItemContainer"> 
-                <img src="/img/home6.jpg" alt="">
+                <img :src="item.picUrl" alt="">
               </div>
               <div class="PCIInfoContainer">
-                <div class="PCITitle">{{item.BPATitle}}</div>
+                <div class="PCITitle">{{item.name}}</div>
                 <div>
-                  <span class="PCITag">{{ item.BPATag }}</span>
-                  <span class="PCIAuthor">{{item.BPAAuthor}}</span>
+                  <span class="PCITag">{{item.song.album.subType}}</span>
+                  <span class="PCIAuthor">{{ item.song.artists[0].name}}</span>
                 </div>
               </div>
             </div>
@@ -22,16 +22,16 @@
         </Slide>
         <Slide key="2">
           <div class="pageContainer" >
-            <div class="pageContainerItem" v-for="(item,index) in pageB" :key="index">
+            <div class="pageContainerItem" v-for="(item) in pageB" :key="item.id">
               <!-- 图片 -->
               <div class="pageContainerItemContainer"> 
-                <img src="/img/home6.jpg" alt="">
+                <img :src="item.picUrl" alt="">
               </div>
               <div class="PCIInfoContainer">
-                <div class="PCITitle">{{item.BPATitle}}</div>
+                <div class="PCITitle">{{item.name}}</div>
                 <div>
-                  <span class="PCITag">{{ item.BPATag }}</span>
-                  <span class="PCIAuthor">{{item.BPAAuthor}}</span>
+                  <span class="PCITag">{{item.song.album.subType}}</span>
+                  <span class="PCIAuthor">{{item.song.artists[0].name}}</span>
                 </div>
               </div>
             </div>
@@ -116,6 +116,7 @@ withDefaults(defineProps<{
   width: 80px;
   height: 80px;
   border-radius: 10px;
+  overflow: hidden;
 }
 .pageContainerItemContainer>img{
   width: 100%;
@@ -124,6 +125,7 @@ withDefaults(defineProps<{
 .PCIInfoContainer{
   text-align: left;
   margin-left: 10px;
+  flex: 1;
 }
 .PCITitle{
   color: #283248;

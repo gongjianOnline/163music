@@ -10,11 +10,11 @@
           <div class="singleTitleContent">推荐歌单</div>
         </template>
         <template #slideComponent>
-          <Slide class="slideContent" v-for="index in 10" :key="index">
+          <Slide class="slideContent" v-for="(personalizedItem,index) in personalizedData.data" :key="index">
             <div class="carousel__item" @click="handelToSS">
-              <Album urlImg="/img/home5.jpg" 
-                playNum="123.4" 
-                playTitle="2023那些超级好听流行音乐推荐(更新快)"></Album>
+              <Album :urlImg="personalizedItem.picUrl" 
+                :playNum="personalizedItem.trackCount" 
+                :playTitle="personalizedItem.name"></Album>
             </div>
           </Slide>
         </template>
@@ -22,9 +22,9 @@
       
       <!-- 双列表歌单 -->
       <Biserial
-      titleName="歌声里藏着故事"
-      :pageA="biserialPageA"
-      :pageB="biserialPageB"></Biserial>
+        titleName="歌声里藏着故事"
+        :pageA="PNDataA.data"
+        :pageB="PNDataB.data"></Biserial>
 
 
     </div>
@@ -45,84 +45,10 @@ import Biserial from "../components/homeComponent/biserialComponent.vue";
 import { Slide } from 'vue3-carousel';
 import {reactive} from "vue";
 import {useRouter} from 'vue-router';
+import api from "../api/api"
+import {PersonalizedItem,PersonalizedData} from "../module/PersonalizedModule"
+import {PNData,PNItem} from "../module/personalizwdNewsongModule"
 
-const biserialPageA = reactive([
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-]);
-
-const biserialPageB = reactive([
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-  {
-    BPAImg:"/img/home6.jpg",
-    BPATitle:"听我说",
-    BPATag:'超81.5%人播放',
-    BPAAuthor:"周深"
-  },
-]);
 
 /* 跳转到歌单页面 */
 const router = useRouter();
@@ -130,9 +56,39 @@ const handelToSS = ()=>{
   router.push('/songSheet');
 }
 
+/* 获取推荐歌单 */
+const personalizedData = reactive<{data:PersonalizedItem[]}>({data:[]})
+const getPersonalized = ()=>{
+  api.homeApi.personalized().then((response)=>{
+    const res = response as PersonalizedData;
+    personalizedData.data = res.result;
+    console.log(personalizedData.data)
+  })
+}
+
+/* 获取推荐音乐 */
+const PNDataA = reactive<{data:PNItem[]}>({data:[]});
+const PNDataB = reactive<{data:PNItem[]}>({data:[]});
+const getPersonalizedNewsong = ()=>{
+  api.homeApi.personalizedNewsong().then((response)=>{
+    console.log("推荐音乐")
+    console.log(response)
+    const res = response as PNData;
+    var groupedArr: PNItem[][] = [];
+    for (let i = 0; i < res.result.length; i += 6) {
+      groupedArr.push(res.result.slice(i, i + 6));
+    }
+    console.log("-----")
+    console.log(groupedArr[1])
+    PNDataA.data = groupedArr[0];
+    PNDataB.data = groupedArr[1];
+    
+  })
+}
 
 
-
+getPersonalized();
+getPersonalizedNewsong()
 </script>
 
 <style lang="less" scoped>

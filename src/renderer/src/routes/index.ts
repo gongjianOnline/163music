@@ -1,6 +1,6 @@
 
 
-import { createRouter,createWebHashHistory } from 'vue-router'
+import { createRouter,createWebHashHistory } from 'vue-router';
 import Layout from "../pages/layout.vue";
 import Home from "../pages/home.vue";
 import SongSheet from "../pages/songSheet.vue"
