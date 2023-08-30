@@ -63,6 +63,8 @@ $ pnpm build:linux
     - squareRecommend.vue 精选歌单中推荐标签的列表组件
     - ranking.vue 精选歌单中排行榜页面
     - singer.vue 歌手页面
+    - biserialComponent.vue 网易云MV组件
+    - albumComponent.vue 最新专辑组件
   - podcastComponent 播客组件
     - newsComponent.vue 播客组件的新闻列表
   - commity 评论列表
@@ -78,6 +80,8 @@ $ pnpm build:linux
   - PersonalizedModule.ts *首页推荐歌单数据模型*
   - personalizwdNewsongModule.ts *热门歌曲数据模型*
   - finechoicePlayModule.ts 获取精选音乐-官方歌单数据模型
+  - finechoiceMVModule.ts 精选音乐-网易音乐官方MV数据模型
+  - finechoiceNewAlbum.ts 精选音乐-最新专辑数据模型
   
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
