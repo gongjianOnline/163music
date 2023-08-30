@@ -34,6 +34,7 @@ $ pnpm build:linux
 - api 接口统一管理文件夹
   - api.ts 作为接口统一的出口文件
   - homeAPi.ts 获取主要页面信息接口模块
+  - finechoiceApi.ts 获取精选音乐页面接口模块
 - utils 工具类
   - axios.ts 对于axios的二次封装
   - http.ts 对于常用请求方式的二次封装
@@ -74,7 +75,10 @@ $ pnpm build:linux
     - index.vue 登录组件
 - module 数据模型文件夹
   - bannerData.ts  banner的数据模型
-
+  - PersonalizedModule.ts *首页推荐歌单数据模型*
+  - personalizwdNewsongModule.ts *热门歌曲数据模型*
+  - finechoicePlayModule.ts 获取精选音乐-官方歌单数据模型
+  
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
