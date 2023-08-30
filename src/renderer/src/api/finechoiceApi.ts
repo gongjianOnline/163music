@@ -13,9 +13,19 @@ const exclusive = ()=>{
 const newAlbum = ()=>{
   return get("/album/newest",{});
 }
+/* 歌单标签列表 */
+const songSheetTags = ()=>{
+  return get("/playlist/highquality/tags",{});
+}
+/* 歌单列表 */
+const songSheetList = (cat,limit)=>{
+  return get("/top/playlist/highquality",{cat:cat,limit:limit})
+}
 
 export default {
   playlist,
   exclusive,
-  newAlbum
+  newAlbum,
+  songSheetTags,
+  songSheetList
 }

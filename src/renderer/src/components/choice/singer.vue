@@ -40,6 +40,7 @@
 <script lang="ts" setup>
 import {reactive, ref} from "vue"
 
+
 /* 标签 */
 const tagsAreaIndex = ref(0);
 const tagsAreaData = reactive([
@@ -100,6 +101,7 @@ const BeyData = reactive([
 const handelBeyIndex = (index)=>{
   BeyIndex.value = index;
 }
+
 
 
 </script>

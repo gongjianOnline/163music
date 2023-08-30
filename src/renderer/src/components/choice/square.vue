@@ -1,124 +1,86 @@
 <template>
-  <div class="">
+  <div>
     <div class="tagsContainer">
       <div class="tagsItem"
-        @click="handelTags(index)"
-        :class="{'tagsItemActive':index == tagsIndex}"
-        v-for="(item,index) in tagsData" 
-        :key="index" >{{item.text}}</div>
+          @click="handelTags(index,item)"
+          :class="{'tagsItemActive':index == tagsIndex}"
+          v-for="(item,index) in tagsData.data" 
+          :key="index" >{{item.name}}</div>
 
-        <el-popover placement="bottom" :width="400" trigger="click">
-          <template #reference>
-            <div class="tagsItem" :class="{'tagsItemActive':moreTagsChildIndex != null}">
-              <span>更多分类</span>
+          <el-popover placement="bottom" :width="400" trigger="click">
+            <template #reference>
+              <div class="tagsItem" :class="{'tagsItemActive':moreTagsIndex != -1}">
+                <span>更多分类</span>
+              </div>
+            </template>
+            <!-- 分类标签子类 -->
+            <div class="moreTagsChildContainer">
+              <div 
+                @click="handelMoreTagsChild(tagesIndex,tagsItem)"
+                :class="{'moreTagsChildActive':moreTagsIndex == tagesIndex}" 
+                v-for="(tagsItem,tagesIndex) in moreTagsData.data" 
+                :key="tagesIndex">{{ tagsItem.name}}</div>
             </div>
-          </template>
-          <!-- 更多标签分类 -->
-          <div class="moreTagsContainer">
-            <div :class="{'moreTagsActive':moreTagsIndex == index}" 
-              @click="handelMoreTagsIndex(index)"
-              v-for="(item,index) in moreTages" 
-              :key="index">{{item.tagsText}}</div>
-          </div>
-          <!-- 分类标签子类 -->
-          <div class="moreTagsChildContainer">
-            <div 
-              @click="handelMoreTagsChild(tagesIndex)"
-              :class="{'moreTagsChildActive':moreTagsChildIndex == tagesIndex}" 
-              v-for="(tagsItem,tagesIndex) in moreTages[moreTagsIndex].tagsChild" 
-              :key="tagesIndex">{{ tagsItem.text}}</div>
-          </div>
-        </el-popover>
-        
+          </el-popover>
+          
+      </div>
+
+      <!-- <SquareRecommend v-if="tagsIndex == 0"></SquareRecommend> -->
+      <ChoiceSongSheet :data="SSLData.data"></ChoiceSongSheet>
+
     </div>
-
-    <SquareRecommend v-if="tagsIndex == 0"></SquareRecommend>
-    <ChoiceSongSheet v-if="tagsIndex != 0"></ChoiceSongSheet>
-
-  </div>
 </template>
 
 <script lang="ts" setup>
 import {reactive,ref} from "vue";
-import SquareRecommend from "./squareRecommend.vue"
+// import SquareRecommend from "./squareRecommend.vue"
 import ChoiceSongSheet from "./ChoiceSongSheet.vue"
+import api from "../../api/api";
+import {TagItem,TagData} from "../../module/finechoiceTag"
+import {FSSLItem,FSSLData} from "../../module/finechoiceSSListModule";
 
 const tagsIndex = ref(0);
-const tagsData = reactive([
-  {
-    text:"推荐",
-  },
-  {
-    text:"官方",
-  },
-  {
-    text:"华语",
-  },
-  {
-    text:"轻音乐",
-  },
-  {
-    text:"摇滚",
-  },
-  {
-    text:"民谣",
-  },
-  {
-    text:"电子",
-  }
-])
-const handelTags = (index)=>{
+const moreTagsIndex = ref(-1);
+const tagsData = reactive<{data:TagItem[]}>({data:[]});
+const moreTagsData = reactive<{data:TagItem[]}>({data:[]});
+const handelTags = (index,item)=>{
   tagsIndex.value = index;
-  moreTagsChildIndex.value = null;
+  moreTagsIndex.value = -1;
+  getSongSheetList(item.name,50)
 }
-
-/* 更多标签 */
-const moreTagsIndex = ref(0);
-const moreTages = reactive([
-  {
-    tagsText:"语种",
-    tagsChild:[
-      {
-        text:'欧美'
-      },
-      {
-        text:'日韩'
-      },
-      {
-        text:"粤语"
-      }
-    ]
-  },
-  {
-    tagsText:"风格",
-    tagsChild:[
-      {
-        text:'流行'
-      },
-      {
-        text:'说唱'
-      },
-      {
-        text:"古典"
-      },
-      {
-        text:"爵士"
-      }
-    ]
-  },
-
-
-])
-const handelMoreTagsIndex = (index)=>{
+const handelMoreTagsChild = (index,item)=>{
   moreTagsIndex.value = index;
-  moreTagsChildIndex.value = null;
-}
-/* 子标签 */
-const moreTagsChildIndex = ref(null);
-const handelMoreTagsChild = (index)=>{
-  moreTagsChildIndex.value = index;
   tagsIndex.value = -1;
+  getSongSheetList(item.name,50)
 }
+
+/* 标签列表 */
+const getSongSheetTags = ()=>{
+  api.finechoiceApi.songSheetTags().then((response)=>{
+    console.log("标签列表")
+    console.log(response)
+    let res = response as TagData;
+    tagsData.data = res.tags.splice(0,6);
+    moreTagsData.data = res.tags;
+  })
+}
+
+/* 歌单列表 */
+const SSLData = reactive<{data:FSSLItem[]}>({data:[]})
+const getSongSheetList = (cat,limit)=>{
+  SSLData.data = [];
+  api.finechoiceApi.songSheetList(cat,limit).then((response)=>{
+    console.log("歌单列表");
+    console.log(response);
+    let res = response as FSSLData;
+    SSLData.data = res.playlists;
+  })
+}
+
+
+
+getSongSheetTags();
+getSongSheetList("华语",50);
 
 </script>
 
@@ -177,6 +139,7 @@ const handelMoreTagsChild = (index)=>{
   border-radius: 10px;
   padding: 4px 15px;
   margin-right: 10px;
+  margin-bottom: 10px;
   border: 1px solid #e2e5e9;
   background: #f7f9fc;
   color: #283248;
