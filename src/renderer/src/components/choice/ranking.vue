@@ -26,6 +26,16 @@
 <script lang="ts" setup>
 import PieceComponent from "../globalComponent/piece.vue";
 import EntryComponent from "../globalComponent/entry.vue";
+import api from "../../api/api";
+
+const getToplist = ()=>{
+  api.finechoiceApi.toplist().then((response)=>{
+    console.log("榜单");
+    console.log(response)
+  })
+}
+
+getToplist();
 </script>
 
 <style lang="less" scoped> 

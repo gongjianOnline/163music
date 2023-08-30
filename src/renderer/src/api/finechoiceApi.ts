@@ -21,11 +21,16 @@ const songSheetTags = ()=>{
 const songSheetList = (cat,limit)=>{
   return get("/top/playlist/highquality",{cat:cat,limit:limit})
 }
+/* 所有榜单 */
+const toplist = ()=>{
+  return get("/toplist",{});
+}
 
 export default {
   playlist,
   exclusive,
   newAlbum,
   songSheetTags,
-  songSheetList
+  songSheetList,
+  toplist
 }
