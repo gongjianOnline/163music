@@ -1,8 +1,8 @@
 <template>
   <div class="entryContainer">
     <div class="entryTitleComponent">
-      <div class="entryTitleContent">推荐榜</div>
-      <div class="entryUpdateContent">刚刚更新</div>
+      <div class="entryTitleContent">{{data.name}}</div>
+      <div class="entryUpdateContent">{{data.updateFrequency}}</div>
     </div>
 
     <div class="entryModule">
@@ -10,12 +10,12 @@
         <div class="entryImgIcon"><svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-yunhang"></use>
         </svg></div>
-        <img src="/img/home7.jpg" alt="">
+        <img :src="data.imgUrl" alt="">
       </div>
       <div class="entryModuleList">
-        <div class="entryModuleItem" v-for="index in 3" :key="index">
-          <div>{{ index }}</div>
-          <div>NEW DANCE <span> - GX</span></div>
+        <div class="entryModuleItem" v-for="(item,index) in data.musicData" :key="index">
+          <div>{{ index+1 }}</div>
+          <div>{{item.name}} <span> - {{item.ar[0].name}}</span></div>
           <div>-</div>
         </div>
       </div>
@@ -26,7 +26,20 @@
 </template>
 
 <script lang="ts" setup>
+import {FODIData} from "../../module/finechoiceOfficialDetailsItem";
 
+withDefaults(defineProps<{
+  data:FODIData
+}>(),{
+  data:()=>{
+    return {
+      name: "",
+      updateFrequency: "",
+      imgUrl:"",
+      musicData: [],
+    }
+  }
+})
 </script>
 
 <style lang="less" scoped>
@@ -117,7 +130,10 @@
   color: #3d465a;
   font-size: 14px;
   flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
 }
+
 .entryModuleItem span{
   color: #bcbfc6;
 }

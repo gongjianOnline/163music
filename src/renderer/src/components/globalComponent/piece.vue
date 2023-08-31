@@ -7,7 +7,7 @@
       </svg>
     </div>
     <!-- <div class="pieceTitle">说唱榜</div> -->
-    <div class="pieceHr"></div>
+    <div v-show="isHideLine" class="pieceHr"></div>
     <div class="pieceDate">{{update}}</div>
   </div>
 </template>
@@ -15,10 +15,12 @@
 
 withDefaults(defineProps<{
   imgUrl:string,
-  update:string
+  update:string,
+  isHideLine:boolean
 }>(),{
   imgUrl:"",
-  update:""
+  update:"",
+  isHideLine:true
 })
 
 
@@ -81,9 +83,9 @@ withDefaults(defineProps<{
 .pieceDate{
   position: absolute;
   bottom: 18%;
-  opacity: 0.5;
+  opacity: 0.8;
   color: #fff;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 </style>

@@ -13,13 +13,22 @@
   <div class="officialRanking" data-color="">
     <div class="rankingTitle">官方推荐</div>
     <div class="officialGrid">
-      <EntryComponent></EntryComponent>
-      <EntryComponent></EntryComponent>
-      <EntryComponent></EntryComponent>
-      <EntryComponent></EntryComponent>
+      <div v-for="(item,index) in officialDetailsData.data" :key="index"> 
+        <EntryComponent 
+          :data="item"></EntryComponent>
+      </div>
     </div>
+  </div>
 
-
+  <div class="rankingContainer"> 
+    <div class="rankingTitle">全部榜单</div>
+    <div class="rankingGrid"> 
+      <div v-for="item in otherListData.data" :key="item.id">
+        <PieceComponent
+          :imgUrl="item.coverImgUrl"
+          :isHideLine="false"></PieceComponent>
+      </div>
+    </div>
   </div>
 
   
@@ -29,20 +38,45 @@
 import PieceComponent from "../globalComponent/piece.vue";
 import EntryComponent from "../globalComponent/entry.vue";
 import api from "../../api/api";
-import {FSSItem,FSSData} from "../../module/finechoiceSongSheet"
+import {FSSItem,FSSData} from "../../module/finechoiceSongSheet";
+import {FODData } from "../../module/finechoiceOfficialDetails";
+import {FODIData} from "../../module/finechoiceOfficialDetailsItem"
 import { reactive } from "vue";
 
 /* 排行榜 */
 const topListData = reactive<{data:FSSItem[]}>({data:[]})
+const officialListData =  reactive<{data:FSSItem[]}>({data:[]});
+const otherListData = reactive<{data:FSSItem[]}>({data:[]});
 const getToplist = ()=>{
   api.finechoiceApi.toplist().then((response)=>{
-    console.log("榜单");
-    console.log(response)
     let res = response as FSSData;
-    topListData.data = res.list.slice(0,5)
-    console.log(topListData.data)
+    officialListData.data = res.list.slice(0,4);
+    topListData.data = res.list.slice(4,9);
+    otherListData.data= res.list.slice(9,res.list.length-1);
+    getOfficialDetails()
   })
 }
+/* 官方推荐 */
+let officialDetailsData = reactive<{data:FODIData[]}>({data:[]});
+const getOfficialDetails = ()=>{
+  let itemData = officialListData.data;
+  for(let i=0;i<itemData.length;i++){ 
+    officialDetailsData.data[i] = {
+      name:itemData[i].name,
+      updateFrequency:itemData[i].updateFrequency,
+      imgUrl:"",
+      musicData:[]
+    }
+    /* 获取歌单详情列表 */
+    api.finechoiceApi.playlistDetail(itemData[i].id).then((response)=>{
+      let res = response as FODData;
+      officialDetailsData.data[i].musicData = res.songs;
+      officialDetailsData.data[i].imgUrl = res.songs[0].al.picUrl;
+    })
+  }
+  console.log(officialDetailsData.data)
+}
+
 
 getToplist();
 </script>

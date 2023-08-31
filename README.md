@@ -85,6 +85,8 @@ $ pnpm build:linux
   - finechoiceTag.ts 精选音乐-歌单广场标签数据模型
   - finechoiceSSListModule.ts 精选音乐-歌单广场歌单列表数据模型
   - finechoiceSongSheet.ts 精选音乐-榜单数据模型
+  - finechoiceOfficialDetails.ts 精选音乐-榜单详情数据模型
+  - finechoiceOfficialDetailsItem.ts 精选音乐-音乐详情自定义数据模型
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面

@@ -25,6 +25,10 @@ const songSheetList = (cat,limit)=>{
 const toplist = ()=>{
   return get("/toplist",{});
 }
+/* 获取歌单详情 */
+const playlistDetail = (id)=>{
+  return get("/playlist/track/all",{id:id,limit:3})
+}
 
 export default {
   playlist,
@@ -32,5 +36,6 @@ export default {
   newAlbum,
   songSheetTags,
   songSheetList,
-  toplist
+  toplist,
+  playlistDetail
 }
