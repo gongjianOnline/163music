@@ -2,9 +2,11 @@
   <div class="rankingContainer"> 
     <div class="rankingTitle">榜单推荐</div>
     <di class="rankingGrid"> 
-      <div><PieceComponent></PieceComponent></div>
-      <div><PieceComponent></PieceComponent></div>
-      <div><PieceComponent></PieceComponent></div>
+      <div v-for="item in topListData.data" :key="item.id">
+        <PieceComponent
+          :imgUrl="item.coverImgUrl"
+          :update="item.updateFrequency"></PieceComponent>
+      </div>
     </di>
   </div>
 
@@ -27,11 +29,18 @@
 import PieceComponent from "../globalComponent/piece.vue";
 import EntryComponent from "../globalComponent/entry.vue";
 import api from "../../api/api";
+import {FSSItem,FSSData} from "../../module/finechoiceSongSheet"
+import { reactive } from "vue";
 
+/* 排行榜 */
+const topListData = reactive<{data:FSSItem[]}>({data:[]})
 const getToplist = ()=>{
   api.finechoiceApi.toplist().then((response)=>{
     console.log("榜单");
     console.log(response)
+    let res = response as FSSData;
+    topListData.data = res.list.slice(0,5)
+    console.log(topListData.data)
   })
 }
 
@@ -46,7 +55,7 @@ getToplist();
 }
 .rankingGrid{
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(5,1fr);
   grid-gap: 10px;
   margin-top: 10px;
 }
