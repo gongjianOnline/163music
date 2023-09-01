@@ -29,6 +29,10 @@ const toplist = ()=>{
 const playlistDetail = (id)=>{
   return get("/playlist/track/all",{id:id,limit:3})
 }
+/*歌手列表 */
+const artistList = (type,area,initial)=>{
+  return get("/artist/list",{type:type,area:area,initial:initial})
+}
 
 export default {
   playlist,
@@ -37,5 +41,6 @@ export default {
   songSheetTags,
   songSheetList,
   toplist,
-  playlistDetail
+  playlistDetail,
+  artistList
 }
