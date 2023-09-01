@@ -2,18 +2,18 @@
   <div class="podcastTitle">{{ titleName }}</div>
   <div class="swiperContainer">
     <Carousel>
-      <Slide v-for="slide in 2" :key="slide">
+      <Slide v-for="(slide,index) in data" :key="index">
         <div class="gridContainer">
           <!-- 单项 -->
-          <div v-for="index in 6" :key="index" class="gridContainerItem">
-            <div class="podcastImg"><img src="/img/home8.jpg" alt=""></div>
+          <div v-for="(item) in slide" :key="item.id" class="gridContainerItem">
+            <div class="podcastImg"><img :src="item.picUrl" alt=""></div>
             <div>
-              <div class="podcastNewsTitle">新闻今日谈-日本核废水</div>
-              <div class="podcastHeat">总编辑热度 144</div>
+              <div class="podcastNewsTitle">{{ item.rcmdtext }}</div>
+              <div class="podcastHeat">总编辑热度 {{item.programCount}}</div>
             </div>
           </div>
-
         </div>
+
       </Slide>
 
       <template #addons>
@@ -27,12 +27,15 @@
 </template>
 
 <script lang="ts" setup>
-import { Carousel, Navigation, Slide } from 'vue3-carousel'
+import { Carousel, Navigation, Slide } from 'vue3-carousel';
+import {PDHItem} from "../../module/podcastDjHost"
 
 withDefaults(defineProps<{
-  titleName:string
+  titleName:string,
+  data:PDHItem[][]
 }>(),{
-  titleName:"新闻推荐"
+  titleName:"新闻推荐",
+  data:()=>[] as PDHItem[][]
 })
 
 </script>

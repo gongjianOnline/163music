@@ -3,7 +3,7 @@
     <HeaderComponents></HeaderComponents>
     <div class="viewContainer">
       <!-- 标签 -->
-      <div class="podcastTagsContainer">
+      <div class="podcastTagsContainer" v-show="false">
         <div
           class="podcastTagsContent"
           @click="handelTags(index)"
@@ -17,19 +17,20 @@
           <div class="singleTitleContent">猜你喜欢</div>
         </template>
         <template #slideComponent>
-          <Slide class="slideContent" v-for="index in 10" :key="index">
+          <Slide class="slideContent" v-for="(item) in RSRecommend.data" :key="item.id">
             <div class="carousel__item" @click="handelToSS">
-              <Album urlImg="/img/home5.jpg" 
-                playNum="123.4" 
-                playTitle="2023那些超级好听流行音乐推荐(更新快)"></Album>
+              <Album :urlImg="item.picUrl" 
+                :playNum=0
+                :playTitle="item.rcmdText"></Album>
             </div>
           </Slide>
         </template>
       </SingleRowComponent>
 
-      <!-- 新闻资讯 -->
+      <!-- 热门电台 -->
       <NewsComponent
-        titleName="新闻推荐">
+        titleName="热门电台"
+        :data="djHostData.data">
 
       </NewsComponent>
 
@@ -45,6 +46,9 @@ import Album from "../components/globalComponent/album.vue";
 import NewsComponent from "../components/podcastComponent/newsComponent.vue";
 import { Slide } from 'vue3-carousel';
 import {ref,reactive} from  "vue";
+import api from "../api/api"
+import {PCMData,PCMItem} from "../module/podcastCommendModule"
+import {PDHData,PDHItem} from "../module/podcastDjHost"
 
 /* 标签页 */
 const tagsIndex = ref(0);
@@ -66,7 +70,32 @@ const handelToSS = ()=>{
   console.log("推荐内容")
 }
 
+/* 个性推荐 */
+const RSRecommend = reactive<{data:PCMItem[]}>({data:[]});
+const getRSRecommend = ()=>{
+  api.radioStationApi.RSRecommend().then((response)=>{
+    console.log("个性推荐",response)
+    let res = response as PCMData;
+    RSRecommend.data = res.data;
+  })
+}
 
+/* 电台热门 */
+const djHostData = reactive<{data:PDHItem[][]}>({data:[]})
+const getDjHost = ()=>{
+  api.radioStationApi.djHost().then((response)=>{
+    console.log("热门电台")
+    console.log(response)
+    let res = response as PDHData;
+    djHostData.data[0] = res.djRadios.slice(0,6);
+    djHostData.data[1] = res.djRadios.slice(6,12);
+    console.log(djHostData.data)
+  })
+}
+
+
+getRSRecommend();
+getDjHost();
 </script>
 
 <style lang="less" scoped>
