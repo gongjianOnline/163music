@@ -56,11 +56,11 @@ const currentMenu = reactive([
     "icon":"#icon-tianchongxing-",
     "routerName":"Podcast"
   },
-  {
-    "text":"社区",
-    "icon":"#icon-shequ",
-    "routerName":"Community"
-  },
+  // {
+  //   "text":"社区",
+  //   "icon":"#icon-shequ",
+  //   "routerName":"Community"
+  // },
   {
     "text":"分割"
   },

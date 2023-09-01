@@ -34,6 +34,7 @@ import {ref} from "vue"
 import HeaderComponents from "../components/mainView/headerComponents.vue";
 import CommitComponent from "../components/commity/commitComponent.vue";
 import CommityRelease from "../components/commity/commityRelease.vue";
+
 /* 模态框 */
 const commitDialogDialog = ref(false);
 const handleDialog = (status:boolean)=>{
@@ -42,6 +43,7 @@ const handleDialog = (status:boolean)=>{
 const handleOpenDialog = ()=>{
   commitDialogDialog.value = true;
 }
+
 
 </script>
 

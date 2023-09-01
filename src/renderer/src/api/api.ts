@@ -5,5 +5,5 @@ import radioStationApi from "./radioStationApi"
 export default {
   homeApi,
   finechoiceApi,
-  radioStationApi
+  radioStationApi,
 }
