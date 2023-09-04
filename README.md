@@ -91,6 +91,10 @@ $ pnpm build:linux
   - finechoiceArtistList.ts 精选音乐-歌手排行榜数据模型
   - podcastDjHost.ts 播客-热门电台
   - podcastCommendModule.ts 播客-个性推荐
+- store
+  - index.ts pinia数据仓库用于管理用户登录数据
+  - 
+
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面

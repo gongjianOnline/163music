@@ -13,10 +13,11 @@
         <!-- 表单 -->
         <div class="inputContainer">
           <div class="codeContent">+86</div>
-          <input type="text" placeholder="请输入手机号">
+          <input type="text" placeholder="请输入手机号" v-model="phoneValue">
         </div>
         <div class="passContainer" >
-          <input type="password" placeholder="请输入密码">
+          <input type="password" placeholder="请输入密码" v-model="password">
+          <button class="passBtnContainer" @click="getCode">{{codeItem?`获取验证码${codeDate}`:"获取验证码"}}</button>
         </div>
         <!-- 自动登录 -->
         <div class="">
@@ -26,7 +27,7 @@
             size="large" />
         </div>
         <!-- 登录 -->
-        <div class="submitContainer">登录</div>
+        <div class="submitContainer" @click="handleLogin">登录</div>
         <!-- 同意 -->
         <div class="termContainer">
           <span>
@@ -47,6 +48,10 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
+// import {useLoginStore} from "../../store/index";
+import { ElMessage } from 'element-plus'
+import api from "../../api/api";
+// const loginStore = useLoginStore();
 
 withDefaults(defineProps<{
   dialogVisible:boolean
@@ -68,6 +73,50 @@ const autoLoginStatus = ref(false);
 /* 同意条款 */
 const termStatus = ref(false);
 
+/* 获取验证码 */
+let codeItem:any = ref(null);
+const codeDate = ref(60);
+const getCode = ()=>{
+  if(codeItem.value){return}
+  console.log("111");
+  codeItem.value = setInterval(()=>{
+    if(codeDate.value == 0){
+      clearInterval(codeItem.value);
+      codeItem.value = null;
+      return;
+    }
+    codeDate.value = codeDate.value -1;
+  },1000)
+
+  api.homeApi.getCode(phoneValue.value).then((response)=>{
+    console.log("发送验证码",response)
+  })
+
+}
+
+/* 登录 */
+const phoneValue = ref("");
+const password = ref("");
+const handleLogin = ()=>{
+
+  if(!termStatus.value){
+    ElMessage('请勾选服务条款')
+    return;
+  }
+  api.homeApi.login(phoneValue.value,password.value).then((response)=>{
+    console.log("用户登录",response)
+    // if(response.code == 200){}
+  })
+
+}
+
+/**登录状态 */
+const loginStatus = ()=>{
+  api.homeApi.loginStatus().then((response)=>{
+    console.log("登录状态",response)
+  })
+}
+loginStatus();
 </script>
 
 <style lang="less" scoped>
@@ -107,9 +156,18 @@ const termStatus = ref(false);
   outline: none;
 }
 .passContainer{
+  display: flex;
   width: 100%;
   height: 40px;
   margin-top: 16px;
+}
+.passContainer .passBtnContainer{
+  border: none;
+  background: linear-gradient(90deg, rgba(255,18,104,1) 0%, rgba(252,61,73,1) 100%);
+  width: 150px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
 }
 .passContainer input{
   width: 100%;
@@ -119,8 +177,11 @@ const termStatus = ref(false);
   border: 1px solid #ebedee;
   padding-left: 20px;
   outline: none;
+  margin-right: 10px;
 }
 .submitContainer{
+  -webkit-app-region:no-drag;
+  cursor: pointer;
   width: 100%;
   height: 40px;
   margin-top: 10px;
