@@ -64,11 +64,11 @@ const currentMenu = reactive([
   {
     "text":"分割"
   },
-  {
-    "text":"我喜欢的音乐",
-    "icon":"#icon-tuijian1",
-    "routerName":"SongSheet"
-  },
+  // {
+  //   "text":"我喜欢的音乐",
+  //   "icon":"#icon-tuijian1",
+  //   "routerName":"SongSheet"
+  // },
   {
     "text":"本地音乐",
     "icon":"#icon-xiazai2",
@@ -77,7 +77,7 @@ const currentMenu = reactive([
 ])
 /* 通用菜单事件 */
 const handelCurrentMenuClick = (index,item)=>{
-  if(index == 4){return}
+  if(index == 3){return}
   currentMenuIndex.value = index;
   router.replace({name:item.routerName})
 }
