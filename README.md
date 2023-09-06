@@ -36,6 +36,7 @@ $ pnpm build:linux
   - homeAPi.ts 获取主要页面信息接口模块
   - finechoiceApi.ts 获取精选音乐页面接口模块
   - radioStationApi.ts 播客相关接口模块
+  - login.ts 登录及用户信息相关接口模块
 - utils 工具类
   - axios.ts 对于axios的二次封装
   - http.ts 对于常用请求方式的二次封装
@@ -91,10 +92,9 @@ $ pnpm build:linux
   - finechoiceArtistList.ts 精选音乐-歌手排行榜数据模型
   - podcastDjHost.ts 播客-热门电台
   - podcastCommendModule.ts 播客-个性推荐
+  - loginStatus.ts 用户登录状态数据模型
 - store
   - index.ts pinia数据仓库用于管理用户登录数据
-  - 
-
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面

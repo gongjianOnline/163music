@@ -48,10 +48,11 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
-// import {useLoginStore} from "../../store/index";
+import {useLoginStore} from "../../store/index";
 import { ElMessage } from 'element-plus'
 import api from "../../api/api";
-// const loginStore = useLoginStore();
+import {LoginStatus,LoginStatusData} from "../../module/loginStatus"
+const loginStore = useLoginStore();
 
 withDefaults(defineProps<{
   dialogVisible:boolean
@@ -88,7 +89,7 @@ const getCode = ()=>{
     codeDate.value = codeDate.value -1;
   },1000)
 
-  api.homeApi.getCode(phoneValue.value).then((response)=>{
+  api.login.getCode(phoneValue.value).then((response)=>{
     console.log("发送验证码",response)
   })
 
@@ -98,24 +99,57 @@ const getCode = ()=>{
 const phoneValue = ref("");
 const password = ref("");
 const handleLogin = ()=>{
-
   if(!termStatus.value){
     ElMessage('请勾选服务条款')
     return;
   }
-  api.homeApi.login(phoneValue.value,password.value).then((response)=>{
+  api.login.login(phoneValue.value,password.value).then((response:any)=>{
     console.log("用户登录",response)
-    // if(response.code == 200){}
+    /* 登录成功后调用获取账户信息接口 */
+    if(response.code == 200){
+      handleAccountInfo()
+    }
   })
 
 }
 
 /**登录状态 */
 const loginStatus = ()=>{
-  api.homeApi.loginStatus().then((response)=>{
+  api.login.loginStatus().then((response)=>{
     console.log("登录状态",response)
+    let res = response as LoginStatus;
+    loginStore.setLoginStatus(res.data.account);
+    // handleUserInfo(res.data.account?.id)
   })
 }
+
+/* 获取账户信息 */
+const handleAccountInfo = ()=>{
+  api.login.getAccountInfo().then((response)=>{
+    console.log("获取账户信息",response)
+    let res = response as LoginStatusData;
+    loginStore.setLoginStatus(res.account);
+    // handleUserInfo(res.account?.id)
+  })
+}
+
+/* 获取用户信息 */
+// const handleUserInfo = (id)=>{
+//   console.log("id",id)
+//   api.login.getUserInfo("8023474819").then((response)=>{
+//     console.log("获取用户信息",response)
+//   })
+// }
+
+/* 注销登录 */
+// const handleLogout = ()=>{
+//   api.login.loginout().then((response)=>{
+//     console.log("注销登录",response)
+//     /* 调用登录状态 */
+//     loginStatus();
+//   })
+// }
+
 loginStatus();
 </script>
 
