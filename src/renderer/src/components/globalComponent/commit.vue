@@ -8,21 +8,23 @@
   <div class="commitTitle">
     <div>
       最新评论
-      <span class="commitNum">123</span>
+      <span class="commitNum">{{ data.length }}</span>
     </div>
   </div>
 
   <div class="commitList">
-    <div class="commitItemContainer" v-for="index in 10" :key="index">
+    <div class="commitItemContainer" v-for="(item) in data" :key="item.commentId">
       <div class="commitItemInfo">
-        <div class="commitImg"></div>
+        <div class="commitImg">
+          <img :src="item.user.avatarUrl" alt="">
+        </div>
         <div class="commitDoc">
-          <div>作者</div>
-          <div>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+          <div>{{item.user.nickname}}</div>
+          <div>{{item.content}}</div>
         </div>
       </div>
       <div class="commitItemDate">
-        <div class="commitDate">07-15</div>
+        <div class="commitDate">{{ item.timeStr }}</div>
         <div class="commitIconContent">
           <div>
             <svg class="icon" aria-hidden="true">
@@ -45,11 +47,24 @@
 </template>
 
 <script lang="ts" setup>
+import {SongSheetCommitComment} from "../../module/songSheetCommit";
 import {ref} from "vue";
 const textareaValue = ref("");
 const handelSend = ()=>{
   console.log(textareaValue.value)
 }
+
+let props = withDefaults(defineProps<{
+    data:SongSheetCommitComment[]
+}>(),{
+  data:()=>{
+    return []
+  }
+})
+console.log("评论",props.data);
+
+
+
 
 </script>
 
@@ -127,6 +142,11 @@ const handelSend = ()=>{
   height: 40px;
   border-radius: 50%;
   background: #787e89;
+  overflow: hidden;
+}
+.commitImg img{
+  width: 100%;
+  height: 100%;
 }
 .commitDoc{
   margin-left: 10px;
@@ -137,10 +157,12 @@ const handelSend = ()=>{
 .commitDoc>div:nth-child(1){
   color:#5975b2;
   font-size: 14px;
+  margin-top: 4px;
 }
 .commitDoc>div:nth-child(2){
   color:#3c455a;
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .commitItemDate{

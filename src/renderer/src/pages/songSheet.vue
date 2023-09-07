@@ -23,9 +23,9 @@
       <!-- 歌曲列表模块 -->
       <TableComponent v-if="tabsIndex == 0" :data="playList.data"></TableComponent>
       <!-- 评论模块 -->
-      <CommitComponent v-if="tabsIndex == 1"></CommitComponent>
+      <CommitComponent v-if="tabsIndex == 1" :data="commitList.data"></CommitComponent>
       <!-- 收藏者列表 -->
-      <SSCollect v-if="tabsIndex == 2"></SSCollect>
+      <SSCollect v-if="tabsIndex == 2" :data="playSubscribers.data"></SSCollect>
 
     </div>
     
@@ -43,12 +43,22 @@ import {useRoute} from "vue-router";
 import api from "../api/api";
 import {SSInfoData,SSInfoPlaylist} from "../module/songSheetInfo";
 import {SSListData,SSListSong} from "../module/songSheetList";
+import {SongSheetCommitData,SongSheetCommitComment} from "../module/songSheetCommit";
+import {SongSheetCollectData,SongSheetCollectSubscriber} from "../module/songSheetCollect";
 
 const router = useRoute();
 
 const tabsIndex = ref(0);
 const handelTabs = (index)=>{
   tabsIndex.value = index;
+  if(index == 1){
+    getPlayListCommit();
+  }
+  if(index == 2){
+    getPlaySubscribers();
+  }
+
+
 }
 
 /* 歌单信息 */
@@ -74,8 +84,32 @@ const getPlayList = ()=>{
   })
 }
 
+/* 获取评论列表 */
+const commitList = reactive<{data:SongSheetCommitComment[]}>({data:[]})
+const getPlayListCommit = ()=>{
+  let listId = router.query.id;
+  api.finechoiceApi.playListCommit(listId).then((response)=>{
+    
+    let res = response as  SongSheetCommitData;
+    console.log("评价111",res.comments)
+    commitList.data = res.comments;
+    console.log("111",commitList.data)
+  })
+}
+
+/* 歌单收藏者 */
+const playSubscribers = reactive<{data:SongSheetCollectSubscriber[]}>({data:[]})
+const getPlaySubscribers = ()=>{
+  let listId = router.query.id;
+  api.finechoiceApi.playSubscribers(listId).then((response)=>{
+    console.log("歌单收藏者",response)
+    let res = response as SongSheetCollectData;
+    playSubscribers.data = res.subscribers;
+  })
+}
 
 getPlayListDetail();
+getPlayListCommit();
 getPlayList();
 </script>
 

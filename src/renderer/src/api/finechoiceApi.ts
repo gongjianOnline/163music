@@ -43,6 +43,16 @@ const playlistDynamic = (id)=>{
   return get("/playlist/track/all",{id:id})
 }
 
+/* 歌单评价 */
+const playListCommit = (id)=>{
+  return get("/comment/playlist",{id:id})
+}
+
+/**歌单收藏者 */
+const playSubscribers = (id)=>{
+  return get("/playlist/subscribers",{id:id})
+}
+
 
 export default {
   playlist,
@@ -54,5 +64,7 @@ export default {
   playlistDetail,
   artistList,
   playlistDynamic,
-  playListDetail
+  playListDetail,
+  playListCommit,
+  playSubscribers
 }

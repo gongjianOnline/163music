@@ -95,6 +95,8 @@ $ pnpm build:linux
   - loginStatus.ts 用户登录状态数据模型
   - songSheetInfo.ts 歌单详情基本信息数据模型
   - songSheetList.ts 歌单详情歌单列表数据模型
+  - songSheetCommit.ts 歌单评论数据模型
+  - songSheetCollect.ts 歌单收藏者数据模型
 - store
   - index.ts pinia数据仓库用于管理用户登录数据
 - pages 页面部分
