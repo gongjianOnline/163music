@@ -6,7 +6,10 @@
       <Carousel>
         <Slide key="1">
           <div class="pageContainer" >
-            <div class="pageContainerItem" v-for="(item) in pageA" :key="item.id">
+            <div class="pageContainerItem" 
+              v-for="(item) in pageA" 
+              :key="item.id"
+              @click="handleClick(item)">
               <!-- 图片 -->
               <div class="pageContainerItemContainer"> 
                 <img :src="item.blurPicUrl" alt="">
@@ -23,7 +26,10 @@
         </Slide>
         <Slide key="2">
           <div class="pageContainer" >
-            <div class="pageContainerItem" v-for="(item) in pageB" :key="item.id">
+            <div class="pageContainerItem" 
+              v-for="(item) in pageB" 
+              :key="item.id"
+              @click="handleClick(item)">
               <!-- 图片 -->
               <div class="pageContainerItemContainer"> 
                 <img :src="item.blurPicUrl" alt="">
@@ -49,6 +55,9 @@
 <script lang="ts" setup>
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
+import {useRouter} from "vue-router"
+
+const router = useRouter();
 
 withDefaults(defineProps<{
   titleName:string,
@@ -59,6 +68,17 @@ withDefaults(defineProps<{
   pageA:()=>new Array(),
   pageB:()=>new Array()
 })
+
+const handleClick = (item)=>{
+  console.log(item);
+  router.push({
+    name:"Album",
+    query:{
+      id:item.id,
+      data:JSON.stringify(item)
+    }
+  })
+}
 
 </script>
 

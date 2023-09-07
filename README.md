@@ -77,6 +77,8 @@ $ pnpm build:linux
     - playList.vue 播放器列表组件
   - loginComponent 登录组件
     - index.vue 登录组件
+  - album 专辑组件
+    - AlbumInfo.vue 专辑信息组件
 - module 数据模型文件夹
   - bannerData.ts  banner的数据模型
   - PersonalizedModule.ts *首页推荐歌单数据模型*
@@ -107,5 +109,6 @@ $ pnpm build:linux
   - podcast.vue 播客页面
   - community.vue 社区页面
   - localMusic.vue 本地音乐页面
+  - album.vue  专辑详情页面
 
 ​	

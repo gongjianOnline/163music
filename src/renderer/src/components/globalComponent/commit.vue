@@ -149,6 +149,7 @@ console.log("评论",props.data);
   height: 100%;
 }
 .commitDoc{
+  flex: 1;
   margin-left: 10px;
   display: flex;
   flex-direction: column;

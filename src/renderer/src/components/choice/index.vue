@@ -6,7 +6,7 @@
         </template>
         <template #slideComponent>
           <Slide class="slideContent" v-for="item in FPDataList.data" :key="item.id">
-            <div class="carousel__item" @click="handelToSS">
+            <div class="carousel__item" @click="handelToSS(item)">
               <Album 
                 :urlImg="item.coverImgUrl" 
                 :playNum="item.commentCount"
@@ -45,8 +45,13 @@ import {AlbumData,AlbumItem} from "../../module/finechoiceNewAlbum"
 
 const router = useRouter();
 
-const handelToSS = ()=>{
-  router.push({name:"SongSheet"})
+const handelToSS = (item)=>{
+  router.push({
+    name:"SongSheet",
+    query:{
+      id:item.id
+    }
+  })
 }
 
 

@@ -13,6 +13,7 @@ import ChoiceVIP from "../components/choice/vipComponent.vue";
 import Podcast from "../pages/podcast.vue";
 import Community from "../pages/community.vue";
 import LocalMusic from "../pages/localMusic.vue"
+import Album from "../pages/album.vue";
 
 
 const routes = [
@@ -78,6 +79,11 @@ const routes = [
         path:"/localMusic",
         name:"LocalMusic",
         component:LocalMusic
+      },
+      {
+        path:"/album",
+        name:"Album",
+        component:Album
       }
     ] 
   },

@@ -53,6 +53,21 @@ const playSubscribers = (id)=>{
   return get("/playlist/subscribers",{id:id})
 }
 
+/* 专辑信息 */
+const albumInfo = (id)=>{
+  return get("/album/detail/dynamic",{id:id})
+}
+
+/* 专辑内容 */
+const albumContent = (id)=>{
+  return get("/album",{id:id})
+}
+
+/* 专辑评论 */
+const albumComment = (id)=>{
+  return get("/comment/album",{id:id})
+}
+
 
 export default {
   playlist,
@@ -66,5 +81,8 @@ export default {
   playlistDynamic,
   playListDetail,
   playListCommit,
-  playSubscribers
+  playSubscribers,
+  albumInfo,
+  albumContent,
+  albumComment
 }
