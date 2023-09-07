@@ -47,7 +47,7 @@ import AudioComponent from "../components/audioComponent/index.vue";
 }
 /* 左视图 */
 .mainContainer{
-  width: calc(100% - 200px);
+  width: calc(100% - 100px);
   background: RGB(247,249,252);
   overflow-y: auto;
   overflow-x: hidden;

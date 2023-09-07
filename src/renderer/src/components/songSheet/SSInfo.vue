@@ -1,31 +1,32 @@
 <template>
   <div class="SSInfoContainer">
     <div class="imgContainer">
-      <img src="/img/home5.jpg" alt="">
+      <img :src="data.coverImgUrl" alt="">
     </div>
     <!-- 歌单信息 -->
     <div class="SSInfoContent">
       <div>
-        <div class="SSITitle">2023年超好听流行音乐(快速更新)</div>
-        <div class="SSTDoc">2023那些好听到单曲循环的歌 制作不易 喜欢的话点个收藏吧~ 谢谢 好听</div>
+        <div class="SSITitle">{{ data.name }}</div>
+        <div class="SSTDoc" :title="data.description">{{ data.description }}</div>
         <!-- 标签 -->
         <div class="SSTNotes">
           <!-- 作者 -->
           <div class="SSIAuthorContainer">
-            <div class="authorImgContent"></div>
-            <div class="authorContent">作者</div>
+            <div class="authorImgContent">
+              <img :src="data.creator.avatarUrl" alt="">
+            </div>
+            <div class="authorContent">{{data.creator.nickname}}</div>
           </div>
           <!-- 标签 -->
           <div class="SSITagContainer">
             <div class="SSITagTitle">标签:</div>
             <div class="SSITagValue">
-              <span>华语</span>
-              <span>流行</span>
+              <span v-for="(tagsItem,tagsIndex) in data.tags" :key="tagsIndex">{{tagsItem}}</span>
             </div>
           </div>
           <!-- 创建时间 -->
           <div class="SSIData">
-            <div>2023-08-22 创建时间</div>
+            <div>{{ dayjs(data.createTime).format('YYYY-MM-DD') }} 创建时间</div>
           </div>
         </div>
       </div>
@@ -43,7 +44,7 @@
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-shoucang"></use>
           </svg>
-          <span>12345</span>
+          <span>{{data.shareCount}}</span>
         </div>
       </div>
     </div>
@@ -52,6 +53,23 @@
 </template>
 
 <script lang="ts" setup>
+import {SSInfoPlaylist} from "../../module/songSheetInfo";
+import dayjs from "dayjs";
+
+
+const propsData = withDefaults(defineProps<{
+  data:SSInfoPlaylist
+}>(),{
+  data:()=>{
+    return {
+      creator:{}
+    }
+  }
+  
+})
+
+console.log("传值打印",propsData.data)
+
 
 </script>
 
@@ -60,6 +78,7 @@
   width: 100%;
   height: 160px;
   display: flex;
+  padding: 0px 20px;
 }
 /* 图片 */
 .imgContainer{
@@ -75,6 +94,7 @@
 
 /* 标签 */
 .SSInfoContent{
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -89,7 +109,15 @@
 .SSTDoc{
   font-size: 12px;
   margin-top: 15px;
+  line-height: 1.5;
   color: #7b7c89;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .SSTNotes{
@@ -106,6 +134,11 @@
   height: 25px;
   border-radius: 50%;
   background: #8b8b96;
+  overflow: hidden;
+}
+.authorImgContent img{
+  width: 100%;
+  height: 100%;
 }
 .authorContent{
   font-size: 12px;
@@ -144,6 +177,7 @@
   height: 40px;
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 .playAllContent{
   width: 110px;

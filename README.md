@@ -93,6 +93,8 @@ $ pnpm build:linux
   - podcastDjHost.ts 播客-热门电台
   - podcastCommendModule.ts 播客-个性推荐
   - loginStatus.ts 用户登录状态数据模型
+  - songSheetInfo.ts 歌单详情基本信息数据模型
+  - songSheetList.ts 歌单详情歌单列表数据模型
 - store
   - index.ts pinia数据仓库用于管理用户登录数据
 - pages 页面部分

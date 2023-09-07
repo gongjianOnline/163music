@@ -34,6 +34,16 @@ const artistList = (type,area,initial)=>{
   return get("/artist/list",{type:type,area:area,initial:initial})
 }
 
+/* 歌单信息详情 */
+const playListDetail = (id)=>{
+  return get("/playlist/detail",{id:id})
+}
+/* 歌单音乐详情 */
+const playlistDynamic = (id)=>{
+  return get("/playlist/track/all",{id:id})
+}
+
+
 export default {
   playlist,
   exclusive,
@@ -42,5 +52,7 @@ export default {
   songSheetList,
   toplist,
   playlistDetail,
-  artistList
+  artistList,
+  playlistDynamic,
+  playListDetail
 }

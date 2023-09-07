@@ -1,6 +1,6 @@
 <template>
   <div class="tableContainer">
-    <div class="table">
+    <div class="tableHeader">
       <div class="tableTitle">#</div>
       <div class="tableTitle">标题</div>
       <div class="tableTitle">专辑</div>
@@ -8,28 +8,33 @@
       <div class="tableTitle">时长</div>
     </div>
     <!-- 数据 -->
-    <div class="table" v-for="index in 10" :key="index">
-      <div class="tableIndex">{{ index }}</div>
+    <div class="table" v-for="(item,index) in data" :key="item.id">
+      <div class="tableIndex">{{ index+1 }}</div>
       <div class="tableTitles">
-        <div>
-          <img src="/img/home6.jpg" alt="">
+        <div class="tableImageContainer">
+          <div class="maskContainer">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-bofang"></use>
+            </svg>
+          </div>
+          <img :src="item.al.picUrl" alt="">
         </div>
         <div>
-          <div>对视曾经</div>
+          <div>{{item.name}}</div>
           <div>
             <span>超清母带</span>
-            <span>陇南林</span>
+            <span v-for=" (arItem,arIndex) in item.ar" :key="arIndex">{{arItem.name}}</span>
           </div>
         </div>
       </div>
-      <div class="tableAlbum">飞行器的执行周期</div>
+      <div class="tableAlbum">{{ item.al.name}}</div>
       <div class="tableIcon">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-xihuan"></use>
         </svg>
       </div>
       <div class="tableDate">
-        04:33
+        {{ dayjs(item.dt).format("mm:ss") }}
       </div>
     </div>
 
@@ -38,21 +43,48 @@
 </template>
 
 <script lang="ts" setup>
+import { dayjs } from "element-plus";
+import {SSListSong} from "../../module/songSheetList"
+
+withDefaults(defineProps<{
+  data:SSListSong[]
+}>(),{
+  data:()=>{
+    return [
+      {
+        al:{}
+      }
+    ] as SSListSong[];
+  }
+})
 
 </script>
 
 <style lang="less" scoped>
 .tableContainer{
   width: 100%;
-  padding: 10px;
-  margin-top: 0px;
+  // padding: 10px;
+  // margin-top: 0px;
 }
-.table{
+.tableHeader,.table{
   display: grid;
   grid-template-columns: 20px 1fr 1fr 100px 100px;
   grid-gap: 10px;
-  padding: 10px 0px;
+  padding: 10px 20px;
 }
+.table{
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.table:hover{
+  background: #fff;
+}
+.table:hover .maskContainer,
+.table:hover .maskContainer .icon{
+  opacity: 1;
+}
+
+
 .tableTitle{
   color: #7b818f;
   font-size: 14px;
@@ -67,6 +99,28 @@
 /* 标题 */
 .tableTitles{
   display: flex;
+}
+.tableImageContainer{
+  position: relative;
+}
+.maskContainer{
+  transition: all 0.25s;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.maskContainer .icon{
+  fill: #fff;
+  opacity: 0;
+  transition: all 0.25s;
+  font-size: 30px;
 }
 .tableTitles > div:nth-child(1){
   width: 60px;

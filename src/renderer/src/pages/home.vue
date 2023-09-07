@@ -11,7 +11,7 @@
         </template>
         <template #slideComponent>
           <Slide class="slideContent" v-for="(personalizedItem,index) in personalizedData.data" :key="index">
-            <div class="carousel__item" @click="handelToSS">
+            <div class="carousel__item" @click="handelToSS(personalizedItem.id)">
               <Album :urlImg="personalizedItem.picUrl" 
                 :playNum="personalizedItem.trackCount" 
                 :playTitle="personalizedItem.name"></Album>
@@ -52,8 +52,13 @@ import {PNData,PNItem} from "../module/personalizwdNewsongModule"
 
 /* 跳转到歌单页面 */
 const router = useRouter();
-const handelToSS = ()=>{
-  router.push('/songSheet');
+const handelToSS = (id)=>{
+  router.push({
+    path:"/songSheet",
+    query:{
+      id:id
+    }
+  });
 }
 
 /* 获取推荐歌单 */
