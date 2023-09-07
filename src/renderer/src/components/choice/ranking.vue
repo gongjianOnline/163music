@@ -2,7 +2,7 @@
   <div class="rankingContainer"> 
     <div class="rankingTitle">榜单推荐</div>
     <di class="rankingGrid"> 
-      <div v-for="item in topListData.data" :key="item.id">
+      <div v-for="item in topListData.data" :key="item.id" @click="handleClick(item)">
         <PieceComponent
           :imgUrl="item.coverImgUrl"
           :update="item.updateFrequency"></PieceComponent>
@@ -13,7 +13,7 @@
   <div class="officialRanking" data-color="">
     <div class="rankingTitle">官方推荐</div>
     <div class="officialGrid">
-      <div v-for="(item,index) in officialDetailsData.data" :key="index"> 
+      <div v-for="(item,index) in officialDetailsData.data" :key="index" @click="handleClick(item)"> 
         <EntryComponent 
           :data="item"></EntryComponent>
       </div>
@@ -23,7 +23,7 @@
   <div class="rankingContainer"> 
     <div class="rankingTitle">全部榜单</div>
     <div class="rankingGrid"> 
-      <div v-for="item in otherListData.data" :key="item.id">
+      <div v-for="item in otherListData.data" :key="item.id" @click="handleClick(item)">
         <PieceComponent
           :imgUrl="item.coverImgUrl"
           :isHideLine="false"></PieceComponent>
@@ -42,6 +42,9 @@ import {FSSItem,FSSData} from "../../module/finechoiceSongSheet";
 import {FODData } from "../../module/finechoiceOfficialDetails";
 import {FODIData} from "../../module/finechoiceOfficialDetailsItem"
 import { reactive } from "vue";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 /* 排行榜 */
 const topListData = reactive<{data:FSSItem[]}>({data:[]})
@@ -54,6 +57,8 @@ const getToplist = ()=>{
     topListData.data = res.list.slice(4,9);
     otherListData.data= res.list.slice(9,res.list.length-1);
     getOfficialDetails()
+
+    console.log("111",officialListData)
   })
 }
 /* 官方推荐 */
@@ -63,6 +68,7 @@ const getOfficialDetails = ()=>{
   for(let i=0;i<itemData.length;i++){ 
     officialDetailsData.data[i] = {
       name:itemData[i].name,
+      id:itemData[i].id,
       updateFrequency:itemData[i].updateFrequency,
       imgUrl:"",
       musicData:[]
@@ -77,6 +83,15 @@ const getOfficialDetails = ()=>{
   console.log(officialDetailsData.data)
 }
 
+
+const handleClick = (item)=>{
+  router.push({
+    path:"/songSheet",
+    query:{
+      id:item.id
+    }
+  });
+}
 
 getToplist();
 </script>

@@ -13,7 +13,7 @@
         </div>
         <div :class="{'tabsSelected':tabsIndex == 1}" @click="handelTabs(1)">
           <span>评论</span>
-          <!-- <span>198</span> -->
+          <span>{{commitList.data.length}}</span>
         </div>
       </div>
       

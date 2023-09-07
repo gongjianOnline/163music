@@ -98,6 +98,7 @@ export interface MusicData {
 
 export interface FODIData {
 	name: string;
+	id:number;
 	updateFrequency: string;
   imgUrl:string;
 	musicData: MusicData[];

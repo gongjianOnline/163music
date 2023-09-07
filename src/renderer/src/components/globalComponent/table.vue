@@ -2,7 +2,7 @@
   <div class="tableContainer">
     <div class="tableHeader">
       <div class="tableTitle">#</div>
-      <div class="tableTitle">标题</div>
+      <div class="tableTitle tableTitles center">标题</div>
       <div class="tableTitle">专辑</div>
       <div class="tableTitle">喜欢</div>
       <div class="tableTitle">时长</div>
@@ -61,6 +61,10 @@ withDefaults(defineProps<{
 </script>
 
 <style lang="less" scoped>
+.center{
+  display: flex;
+  justify-content: center;
+}
 .tableContainer{
   width: 100%;
   // padding: 10px;
@@ -99,6 +103,7 @@ withDefaults(defineProps<{
 /* 标题 */
 .tableTitles{
   display: flex;
+  width: 300px;
 }
 .tableImageContainer{
   position: relative;
@@ -134,6 +139,7 @@ withDefaults(defineProps<{
   height: 100%;
 }
 .tableTitles > div:nth-child(2){
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,7 +156,7 @@ withDefaults(defineProps<{
   font-size: 12px;
   border-radius: 10px;
 }
-.tableTitles > div:nth-child(2)>div:nth-child(2)>span:nth-child(2){
+.tableTitles > div:nth-child(2)>div:nth-child(2)>span{
   font-size: 12px;
   color: #7b818f;
   margin-left: 4px;
