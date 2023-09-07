@@ -5,9 +5,17 @@
       <Carousel>
         <Slide key="1">
           <div class="pageContainer" >
-            <div class="pageContainerItem" v-for="(item) in pageA" :key="item.id">
+            <div class="pageContainerItem" 
+              v-for="(item) in pageA" 
+              :key="item.id"
+              @click="handleClick(item)">
               <!-- 图片 -->
               <div class="pageContainerItemContainer"> 
+                <div class="pageContainerItemMake">
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-bofang"></use>
+                  </svg>
+                </div> 
                 <img :src="item.picUrl" alt="">
               </div>
               <div class="PCIInfoContainer">
@@ -22,9 +30,17 @@
         </Slide>
         <Slide key="2">
           <div class="pageContainer" >
-            <div class="pageContainerItem" v-for="(item) in pageB" :key="item.id">
+            <div class="pageContainerItem" 
+              v-for="(item) in pageB" 
+              :key="item.id"
+              @click="handleClick(item)">
               <!-- 图片 -->
-              <div class="pageContainerItemContainer"> 
+              <div class="pageContainerItemContainer">
+                <div class="pageContainerItemMake">
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-bofang"></use>
+                  </svg>
+                </div> 
                 <img :src="item.picUrl" alt="">
               </div>
               <div class="PCIInfoContainer">
@@ -48,6 +64,9 @@
 <script lang="ts" setup>
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
+import {useRouter} from "vue-router"
+
+const router = useRouter();
 
 withDefaults(defineProps<{
   titleName:string,
@@ -59,6 +78,15 @@ withDefaults(defineProps<{
   pageB:()=>new Array()
 })
 
+/* 路由跳转 */
+const handleClick = (item)=>{
+  router.push({
+    path:"/songSheet",
+    query:{
+      id:item.id
+    }
+  });
+}
 </script>
 
 <style lang="less" scoped> 
@@ -111,14 +139,38 @@ withDefaults(defineProps<{
 .pageContainerItem:hover{
   background: #fff;
 }
+.pageContainerItem:hover .pageContainerItemMake,
+.pageContainerItem:hover .pageContainerItemMake .icon{
+  opacity: 1;
+}
 
 .pageContainerItemContainer{
   width: 80px;
   height: 80px;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
-.pageContainerItemContainer>img{
+.pageContainerItemMake{
+  opacity: 0;
+  transition: all 0.25s;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pageContainerItemMake .icon{
+  opacity: 0;
+  fill: #fff;
+  font-size: 30px;
+  transition: all 0.25s;
+}
+.pageContainerItemContainer img{
   width: 100%;
   height: 100%;
 }

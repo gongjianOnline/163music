@@ -19,6 +19,8 @@ import api from "../../api/api";
 import { reactive } from "vue";
 import {Banner,bannerData} from "../../module/bannerData";
 
+// const router = useRouter();
+
 /* 接口调用  */
 reactive<{ data: Banner[] }>({ data: [] });
 const bannerList = reactive<{data:Banner[]}>({data:[]});
@@ -28,6 +30,7 @@ const getBannerFun = ()=>{
     bannerList.data = res.banners;
   })
 }
+
 
 
 

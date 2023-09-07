@@ -41,13 +41,13 @@ import AudioComponent from "../components/audioComponent/index.vue";
 
 /* 左视图菜单 */
 .menuContainer{
-  max-width: 200px;
+  width: 200px;
   height: 100%;
   background: RGB(240,243,246);
 }
 /* 左视图 */
 .mainContainer{
-  width: calc(100% - 100px);
+  flex: 1;
   background: RGB(247,249,252);
   overflow-y: auto;
   overflow-x: hidden;
