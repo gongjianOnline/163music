@@ -8,7 +8,7 @@
       <div class="tableTitle">时长</div>
     </div>
     <!-- 数据 -->
-    <div class="table" v-for="(item,index) in data" :key="item.id">
+    <div class="table" v-for="(item,index) in data" :key="item.id" @dblclick="handleClick(item)">
       <div class="tableIndex">{{ index+1 }}</div>
       <div class="tableTitles">
         <div class="tableImageContainer">
@@ -45,7 +45,9 @@
 <script lang="ts" setup>
 import { dayjs } from "element-plus";
 import {SSListSong} from "../../module/songSheetList"
+import {usePlayStore} from "../../store/auto"
 
+const playStore = usePlayStore();
 withDefaults(defineProps<{
   data:SSListSong[]
 }>(),{
@@ -57,6 +59,9 @@ withDefaults(defineProps<{
     ] as SSListSong[];
   }
 })
+const handleClick = (item)=>{
+  playStore.setMusicInfo(item)
+}
 
 </script>
 

@@ -3,12 +3,12 @@
     <!-- 播放信息 -->
     <div class="audioInfoContainer"> 
       <div class="AIFImgContainer">
-        <img src="/img/home8.jpg" alt="">
+        <img :class="{'rotateContainer':isPlay}" :src="playStore.musicInfo?.al?.picUrl ?? ''" alt="">
       </div>
       <div class="AIFTitleContainer">
         <div class="AIFTitle">
           <!-- <marquee behavior="scroll" direction="left"></marquee> -->
-          鼓楼 - <span>赵雷</span>
+          {{playStore.musicInfo?.name ?? ''}} - <span>{{ playStore.musicInfo?.ar?.[0]?.name ?? '' }}</span>
         </div>
         <div class="AIFoperate">
           <div>
@@ -32,9 +32,9 @@
             <use xlink:href="#icon-shangyishou"></use>
           </svg>
         </span>
-        <span>
+        <span @click="handlePlay">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-zanting"></use>
+            <use :xlink:href="isPlay?'#icon-zanting':'#icon-bofang'"></use>
           </svg>
         </span>
         <span>
@@ -45,13 +45,13 @@
       </div>
       <!-- 进度条 -->
       <div class="paceContainer">
-        <div class="dateContent">0:00</div>
+        <div class="dateContent">{{ playDate }}</div>
         <div class="paceContent">
           <el-slider 
-            v-model="sliderValue" 
+            v-model="playCourseTiem" 
             :show-tooltip="false"/>
         </div>
-        <div class="dateContent">3:35</div>
+        <div class="dateContent">{{ dayjs(playStore.musicInfo?.dt).format("mm:ss") }}</div>
       </div>
     </div>
 
@@ -69,22 +69,28 @@
           </svg>
         </div>
         <div class="volSlider">
-          <el-slider 
-            v-model="volValue" 
+          <el-slider
+            @input="handleVolume"
+            v-model="volume" 
             :show-tooltip="false"/>
         </div>
       </div>
     </div>
 
+    <div class="audioElContainer"> 
+      <audio ref="audioEl"></audio>
+    </div>
   </div>
   <PlayList :drawer="playStatus" @handel-close="handleDialog"></PlayList>
 </template>
 <script lang="ts" setup>
-import {ref} from "vue";
+import {ref,watch} from "vue";
 import PlayList from "./playList.vue"
+import {usePlayStore} from "../../store/auto"
+import api from "../../api/api"
+import dayjs from "dayjs";
 
-const sliderValue = ref(0);
-const volValue = ref(0);
+const playStore = usePlayStore();
 
 /* 播放列表 */
 const playStatus = ref(false);
@@ -93,6 +99,74 @@ const handelPlayList = ()=>{
 }
 const handleDialog = (status)=>{
   playStatus.value = status;
+}
+
+/* 监听播放id的变化 */
+watch(()=>playStore.musicInfo,(newVal:any)=>{
+  api.finechoiceApi.playMusicUrl(newVal.id).then((response:any)=>{
+    setMusicUpdate(response.data[0])
+  })
+})
+
+/* 更新播放器属性 */
+const audioEl = ref<HTMLAudioElement>();
+let time:any = null;
+const volume = ref(30);
+const isPlay = ref(false);
+const setMusicUpdate = (newUrl)=>{
+  if(audioEl.value){
+    clearInterval(time);
+    playDate.value = "0:00";
+    audioEl.value.src = newUrl.url;
+    audioEl.value.play(); // 自动播放
+    audioEl.value.volume = volume.value / 100; //设置音量
+    isPlay.value = true;
+    time = setInterval(()=>{
+      if(audioEl.value){
+        formatPlayDate(audioEl.value.currentTime);
+        playCourse(audioEl.value.currentTime);
+      }
+      if(playDate.value == dayjs(playStore.musicInfo?.dt).format("mm:ss")){
+        clearInterval(time);
+        playDate.value = "0:00";
+        playCourseTiem.value = 0;
+        isPlay.value = false;
+      }
+    },1000)
+  }
+}
+
+/* 格式化播放时间 */
+const playDate = ref("0:00");
+const formatPlayDate = (currentTime:number)=>{
+  const milliseconds = Math.floor(currentTime * 1000);
+  playDate.value = dayjs(milliseconds).format("mm:ss");
+}
+/* 计算播放进度 */
+const playCourseTiem = ref(0);
+const playCourse = (currentTiem)=>{
+  if(playStore.musicInfo.dt){
+    playCourseTiem.value = (currentTiem / playStore.musicInfo?.dt) * 100000;
+  }
+}
+/* 音量设置 */
+const handleVolume = ()=>{
+  if(audioEl.value){
+    audioEl.value.volume = volume.value / 100; // 动态设置音量
+  }
+}
+
+/* 播放&暂停 */
+const handlePlay = ()=>{
+  if(audioEl.value){
+    if(isPlay.value){
+      audioEl.value.pause();
+      isPlay.value = false;
+    }else{
+      audioEl.value.play();
+      isPlay.value = true;
+    };
+  }
 }
 
 </script>
@@ -121,6 +195,9 @@ const handleDialog = (status)=>{
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+.rotateContainer{
+  animation: rotate 6s linear infinite;
 }
 .AIFTitleContainer{
   display: flex;
@@ -253,5 +330,10 @@ span:nth-child(2) .icon{
 .volSlider{
   width: 120px;
   margin: 0px 15px;
+}
+.audioElContainer{
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
 }
 </style>

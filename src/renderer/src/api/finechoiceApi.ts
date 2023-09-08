@@ -77,6 +77,11 @@ const artistsList = (id)=>{
   return get("/artists",{id:id})
 }
 
+/* 获取音乐连接 */
+const playMusicUrl = (id)=>{
+  return get("/song/url/v1",{level:'standard',id:id})
+}
+
 export default {
   playlist,
   exclusive,
@@ -94,5 +99,6 @@ export default {
   albumContent,
   albumComment,
   artistDetail,
-  artistsList
+  artistsList,
+  playMusicUrl
 }
