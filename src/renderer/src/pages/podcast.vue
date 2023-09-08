@@ -21,7 +21,8 @@
             <div class="carousel__item" @click="handelToSS">
               <Album :urlImg="item.picUrl" 
                 :playNum=0
-                :playTitle="item.rcmdText"></Album>
+                :playTitle="item.rcmdText"
+                @click="handleClick(item)"></Album>
             </div>
           </Slide>
         </template>
