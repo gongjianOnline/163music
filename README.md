@@ -104,6 +104,7 @@ $ pnpm build:linux
   - singerInfo.ts 歌手信息详情模型
 - store
   - index.ts pinia数据仓库用于管理用户登录数据
+  - auto.ts 用于存储音乐列表和播放器的相关数据
 - pages 页面部分
   - layout.vue 对整个项目页面框架搭建
   - home.vue 为我推荐页面
