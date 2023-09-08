@@ -14,6 +14,7 @@ import Podcast from "../pages/podcast.vue";
 import Community from "../pages/community.vue";
 import LocalMusic from "../pages/localMusic.vue"
 import Album from "../pages/album.vue";
+import Singer from "../pages/singer.vue";
 
 
 const routes = [
@@ -84,6 +85,11 @@ const routes = [
         path:"/album",
         name:"Album",
         component:Album
+      },
+      {
+        path:"/singer",
+        name:'Singer',
+        component:Singer
       }
     ] 
   },

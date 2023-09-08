@@ -68,6 +68,14 @@ const albumComment = (id)=>{
   return get("/comment/album",{id:id})
 }
 
+/* 歌手详情 */
+const artistDetail = (id)=>{
+  return get("/artist/detail",{id:id})
+}
+/* 歌手单曲 */
+const artistsList = (id)=>{
+  return get("/artists",{id:id})
+}
 
 export default {
   playlist,
@@ -84,5 +92,7 @@ export default {
   playSubscribers,
   albumInfo,
   albumContent,
-  albumComment
+  albumComment,
+  artistDetail,
+  artistsList
 }

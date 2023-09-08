@@ -79,6 +79,8 @@ $ pnpm build:linux
     - index.vue 登录组件
   - album 专辑组件
     - AlbumInfo.vue 专辑信息组件
+  - singer 歌手组件
+    - singerInfo.vue 歌手详情组件
 - module 数据模型文件夹
   - bannerData.ts  banner的数据模型
   - PersonalizedModule.ts *首页推荐歌单数据模型*
@@ -99,6 +101,7 @@ $ pnpm build:linux
   - songSheetList.ts 歌单详情歌单列表数据模型
   - songSheetCommit.ts 歌单评论数据模型
   - songSheetCollect.ts 歌单收藏者数据模型
+  - singerInfo.ts 歌手信息详情模型
 - store
   - index.ts pinia数据仓库用于管理用户登录数据
 - pages 页面部分
@@ -110,5 +113,6 @@ $ pnpm build:linux
   - community.vue 社区页面
   - localMusic.vue 本地音乐页面
   - album.vue  专辑详情页面
+  - singer.vue 歌手详情页面
 
 ​	

@@ -26,7 +26,10 @@
     </div>
 
     <div class="singerListContainer">
-      <div class="SSCItem" v-for="(item) in artistListData.data" :key="item.id">
+      <div class="SSCItem" 
+        v-for="(item) in artistListData.data" 
+        :key="item.id"
+        @click="handelClick(item)">
         <div class="SSCImg">
           <div class="SSCHover">
             <svg class="icon" aria-hidden="true">
@@ -48,7 +51,9 @@
 import {reactive, ref} from "vue";
 import api from "../../api/api";
 import {FALData,FALItem} from "../../module/finechoiceArtistList";
+import {useRouter} from "vue-router"
 
+const router = useRouter();
 /* 标签 */
 const tagsAreaIndex = ref(0);
 const tagsAreaData = reactive([
@@ -129,6 +134,17 @@ const getArtistList = (type,area,initial)=>{
   api.finechoiceApi.artistList(type,area,initial).then((response)=>{
     let res = response as FALData;
     artistListData.data = res.artists;
+  })
+}
+
+/* 歌手详情 */
+const handelClick = (item)=>{
+  console.log(item)
+  router.push({
+    path:"/singer",
+    query:{
+      id:item.id
+    }
   })
 }
 
