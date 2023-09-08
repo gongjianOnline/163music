@@ -32,7 +32,7 @@
       </div>
       <!-- 按钮组 -->
       <div class="buttonContainer">
-        <div class="playAllContent">
+        <div class="playAllContent" @click="handelPlayAll">
           <span>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-bofangqi-bofang"></use>
@@ -57,6 +57,10 @@ import {SSInfoPlaylist} from "../../module/songSheetInfo";
 import dayjs from "dayjs";
 
 
+const emit = defineEmits<{
+  (e:"handle-playAll"):void
+}>();
+
 const propsData = withDefaults(defineProps<{
   data:SSInfoPlaylist
 }>(),{
@@ -67,6 +71,11 @@ const propsData = withDefaults(defineProps<{
   }
   
 })
+
+/* 播放全部传递给父组件 */
+const handelPlayAll = ()=>{
+  emit("handle-playAll")
+}
 
 console.log("传值打印",propsData.data)
 

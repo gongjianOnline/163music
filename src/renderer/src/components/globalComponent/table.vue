@@ -60,7 +60,8 @@ withDefaults(defineProps<{
   }
 })
 const handleClick = (item)=>{
-  playStore.setMusicInfo(item)
+  playStore.setMusicInfo(item);
+  playStore.setAddPlay(item);
 }
 
 </script>

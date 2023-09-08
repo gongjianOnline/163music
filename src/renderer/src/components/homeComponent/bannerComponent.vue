@@ -34,7 +34,6 @@ const getBannerFun = ()=>{
 
 
 
-
 getBannerFun();
 </script>
 

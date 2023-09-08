@@ -3,7 +3,7 @@
     <!-- header -->
     <HeaderComponents></HeaderComponents>
     <div class="mainContainer">
-      <SSInfo :data="playListDetail.data"></SSInfo>
+      <SSInfo @handle-playAll="handlePlayAll" :data="playListDetail.data"></SSInfo>
       <!-- 导航栏组件 -->
       <div class="tabsContainer">
         <div :class="{'tabsSelected':tabsIndex == 0}" @click="handelTabs(0)">
@@ -45,7 +45,9 @@ import {SSInfoData,SSInfoPlaylist} from "../module/songSheetInfo";
 import {SSListData,SSListSong} from "../module/songSheetList";
 import {SongSheetCommitData,SongSheetCommitComment} from "../module/songSheetCommit";
 import {SongSheetCollectData,SongSheetCollectSubscriber} from "../module/songSheetCollect";
+import {usePlayStore} from "../store/auto"
 
+const playStore = usePlayStore();
 const router = useRoute();
 
 const tabsIndex = ref(0);
@@ -106,6 +108,11 @@ const getPlaySubscribers = ()=>{
     let res = response as SongSheetCollectData;
     playSubscribers.data = res.subscribers;
   })
+}
+
+/* 将歌单同步到pain中 */
+const handlePlayAll = ()=>{
+  playStore.setPlayList(playList.data)
 }
 
 getPlayListDetail();

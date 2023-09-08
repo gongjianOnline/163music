@@ -5,6 +5,7 @@ export const usePlayStore = defineStore("PlayStore",{
   state:()=>{
     return { // 初始化状态值
       musicInfo:{} as SSListSong,
+      playList:[] as SSListSong[],
     }
   },
   getters:{ // 在不改变源数据的前提下可对数据进行加工, 等同于计算属性
@@ -15,7 +16,14 @@ export const usePlayStore = defineStore("PlayStore",{
     setMusicInfo(data){
       this.musicInfo = data as SSListSong;
     },
-    
+    /* 播放列表 */
+    setPlayList(data){
+      this.playList = data as SSListSong[];
+    },
+    /**单曲添加到播放列表 */
+    setAddPlay(data){
+      this.playList.unshift(data)
+    }
   }
 
 })

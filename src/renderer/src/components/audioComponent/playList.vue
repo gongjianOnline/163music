@@ -9,7 +9,7 @@
         <div class="playHeader">
           <div class="playTitle">
             播放全部
-            <span>113</span>
+            <span>{{platStore.playList.length}}</span>
           </div>
           <div class="playClearContainer">
             <span>
@@ -22,23 +22,23 @@
         </div>
         <!-- 歌单列表 -->
         <div class="playListWrapper">
-          <div class="playItem" v-for="index in 10" :key="index">
+          <div class="playItem" v-for="(item) in platStore.playList" :key="item.id">
             <div>
               <div class="playHover">
                 <svg class="icon" aria-hidden="true">
                   <use xlink:href="#icon-yunhang"></use>
                 </svg>
               </div>
-              <img src="/img/home7.jpg" alt="">
+              <img :src="item.al.picUrl" alt="">
             </div>
             <div class="playInfo">
-              <div class="PITitle">直觉</div>
+              <div class="PITitle">{{item.name}}</div>
               <div class="PITag">
                 <span>超清母带</span>
-                李学适
+                <span v-for="(arItem) in item.ar" :key="arItem.id">{{ arItem.name }}</span>
               </div>
             </div>  
-            <div class="PlayDate">03:45</div>
+            <div class="PlayDate">{{ dayjs(item.dt).format("mm:ss") }}</div>
           </div>
 
 
@@ -51,6 +51,10 @@
 </template>
 
 <script lang="ts" setup>
+import {usePlayStore} from "../../store/auto";
+import dayjs from "dayjs";
+
+const platStore = usePlayStore();
 const emit = defineEmits<{
   (e:"handel-Close",name:boolean):void
 }>();
@@ -165,12 +169,16 @@ const handleClose = ()=>{
   display: flex;
   flex-direction: column;
   margin-left: 10px;
-  flex: 1;
+  width: 200px;
 }
 .PITitle{
   font-size: 16px;
   color: #283248;
   margin-bottom: 6px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  white-space: nowrap;
 }
 .PITag span:nth-child(1){
   display: inline-block;
