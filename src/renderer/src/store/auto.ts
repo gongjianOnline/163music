@@ -4,8 +4,9 @@ import {SSListSong} from "../module/songSheetList";
 export const usePlayStore = defineStore("PlayStore",{
   state:()=>{
     return { // 初始化状态值
-      musicInfo:{} as SSListSong,
-      playList:[] as SSListSong[],
+      musicInfo:{} as SSListSong, /* 当前播放音乐信息 */
+      playList:[] as SSListSong[], /**播放列表 */
+      qualityValue:"standard" /**播放质量 */
     }
   },
   getters:{ // 在不改变源数据的前提下可对数据进行加工, 等同于计算属性
@@ -27,6 +28,10 @@ export const usePlayStore = defineStore("PlayStore",{
       if(!(foundItem != -1)){
         this.playList.unshift(data)
       }
+    },
+    /* 设置播放质量 */
+    setQuality(value){
+      this.qualityValue = value;
     }
   }
 

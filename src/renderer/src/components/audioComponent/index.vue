@@ -57,6 +57,20 @@
 
     <!-- 音量及列表 -->
     <div class="volContainer">
+      <div class="qualityContainer"> 
+        <el-select 
+          v-model="qualityValue" 
+          placeholder="Select" 
+          size="small"
+          @change="handleQuality">
+          <el-option
+            v-for="item in qualityList.data"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </div>
       <div class="playListIcon" @click="handelPlayList">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-liebiao"></use>
@@ -84,7 +98,7 @@
   <PlayList :drawer="playStatus" @handel-close="handleDialog"></PlayList>
 </template>
 <script lang="ts" setup>
-import {ref,watch} from "vue";
+import {reactive, ref,watch} from "vue";
 import PlayList from "./playList.vue"
 import {usePlayStore} from "../../store/auto"
 import api from "../../api/api"
@@ -103,8 +117,7 @@ const handleDialog = (status)=>{
 
 /* 监听播放id的变化 */
 watch(()=>playStore.musicInfo,(newVal:any)=>{
-  console.log(newVal)
-  api.finechoiceApi.playMusicUrl(newVal.id).then((response:any)=>{
+  api.finechoiceApi.playMusicUrl(newVal.id,playStore.qualityValue).then((response:any)=>{
     setMusicUpdate(response.data[0])
   })
 })
@@ -191,6 +204,49 @@ const handelNextMusic = ()=>{
   if(index < playStore.playList.length-1){
     playStore.setMusicInfo(playStore.playList[index+1])
   }
+}
+
+/* 切换歌曲质量 */
+const qualityValue = ref("standard");
+const qualityList = reactive({data:[
+  {
+    value:'standard',
+    label:'标准'
+  },
+  {
+    value:'higher',
+    label:'较高'
+  },
+  {
+    value:'exhigh',
+    label:'极高'
+  },
+  {
+    value:'lossless',
+    label:'无损'
+  },
+  {
+    value:'hires',
+    label:'Hi-Res'
+  },
+  {
+    value:'jyeffect',
+    label:'高清环绕声'
+  },
+  {
+    value:'sky',
+    label:'沉浸环绕声'
+  },
+  {
+    value:'jymaster',
+    label:'超清母带'
+  },
+]})
+const handleQuality = ()=>{
+  playStore.setQuality(qualityValue.value);
+  api.finechoiceApi.playMusicUrl(playStore.musicInfo.id,playStore.qualityValue).then((response:any)=>{
+    setMusicUpdate(response.data[0])
+  })
 }
 </script>
 
@@ -334,7 +390,6 @@ span:nth-child(2) .icon{
 
 /* 音量及播放列表 */
 .volContainer{
-  width: 200px;
   display: flex;
   align-items: center;
   margin-top: 40px;
@@ -349,6 +404,9 @@ span:nth-child(2) .icon{
 .volContent{
   display: flex;
   align-items: center;
+}
+.qualityContainer:deep(.el-select){
+  width: 100px !important;
 }
 .volSlider{
   width: 120px;

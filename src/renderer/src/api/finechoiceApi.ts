@@ -78,8 +78,8 @@ const artistsList = (id)=>{
 }
 
 /* 获取音乐连接 */
-const playMusicUrl = (id)=>{
-  return get("/song/url/v1",{level:'standard',id:id})
+const playMusicUrl = (id,level)=>{
+  return get("/song/url/v1",{level:level,id:id})
 }
 
 export default {
