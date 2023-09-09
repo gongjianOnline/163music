@@ -27,7 +27,7 @@
     <!-- 控制器 -->
     <div class="ACcontroller"> 
       <div>
-        <span>
+        <span @click="handelBackMusic">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-shangyishou"></use>
           </svg>
@@ -37,7 +37,7 @@
             <use :xlink:href="isPlay?'#icon-zanting':'#icon-bofang'"></use>
           </svg>
         </span>
-        <span>
+        <span @click="handelNextMusic">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-xiayishou"></use>
           </svg>
@@ -103,9 +103,16 @@ const handleDialog = (status)=>{
 
 /* 监听播放id的变化 */
 watch(()=>playStore.musicInfo,(newVal:any)=>{
+  console.log(newVal)
   api.finechoiceApi.playMusicUrl(newVal.id).then((response:any)=>{
     setMusicUpdate(response.data[0])
   })
+})
+/**监听播放列表变化 */
+watch(()=>playStore.playList,(newVal:any)=>{
+  console.log(newVal)
+  console.log(newVal[0].id)
+  playStore.setMusicInfo(newVal[0])
 })
 
 /* 更新播放器属性 */
@@ -169,6 +176,22 @@ const handlePlay = ()=>{
   }
 }
 
+/* 上一曲 */
+const handelBackMusic = ()=>{
+  const musicInfoId = playStore.musicInfo.id;
+  const index = playStore.playList.findIndex(item=>item.id === musicInfoId);
+  if(index > 0){
+    playStore.setMusicInfo(playStore.playList[index-1])
+  }
+}
+/* 下一曲 */
+const handelNextMusic = ()=>{
+  const musicInfoId = playStore.musicInfo.id;
+  const index = playStore.playList.findIndex(item=>item.id === musicInfoId);
+  if(index < playStore.playList.length-1){
+    playStore.setMusicInfo(playStore.playList[index+1])
+  }
+}
 </script>
 
 <style lang="less" scoped>

@@ -8,7 +8,10 @@
       <div class="tableTitle">时长</div>
     </div>
     <!-- 数据 -->
-    <div class="table" v-for="(item,index) in data" :key="item.id" @dblclick="handleClick(item)">
+    <div class="table" 
+      v-for="(item,index) in data" 
+      :key="timeStamp" 
+      @dblclick="handleClick(item)">
       <div class="tableIndex">{{ index+1 }}</div>
       <div class="tableTitles">
         <div class="tableImageContainer">
@@ -43,11 +46,14 @@
 </template>
 
 <script lang="ts" setup>
+import {ref} from "vue";
 import { dayjs } from "element-plus";
 import {SSListSong} from "../../module/songSheetList"
 import {usePlayStore} from "../../store/auto"
 
 const playStore = usePlayStore();
+
+const timeStamp = ref(Date.now());
 withDefaults(defineProps<{
   data:SSListSong[]
 }>(),{

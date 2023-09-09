@@ -22,7 +22,10 @@
         </div>
         <!-- 歌单列表 -->
         <div class="playListWrapper">
-          <div class="playItem" v-for="(item) in platStore.playList" :key="item.id">
+          <div class="playItem" 
+            v-for="(item) in platStore.playList" 
+            :key="item.id"
+            @dblclick="handelClick(item)">
             <div>
               <div class="playHover">
                 <svg class="icon" aria-hidden="true">
@@ -67,6 +70,10 @@ withDefaults(defineProps<{
 /* 关闭模态框 */
 const handleClose = ()=>{
   emit("handel-Close",false)
+}
+/* 双击播放 */
+const handelClick = (item)=>{
+  platStore.setMusicInfo(item)
 }
 
 </script>

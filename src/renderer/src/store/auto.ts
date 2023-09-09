@@ -12,7 +12,7 @@ export const usePlayStore = defineStore("PlayStore",{
     
   },
   actions:{ // 修改 state 中的值,同时支持同步和异步
-    /* 用户登录状态 */
+    /* 当前播放音乐信息 */
     setMusicInfo(data){
       this.musicInfo = data as SSListSong;
     },
@@ -22,7 +22,11 @@ export const usePlayStore = defineStore("PlayStore",{
     },
     /**单曲添加到播放列表 */
     setAddPlay(data){
-      this.playList.unshift(data)
+      const foundItem = this.playList.findIndex(item => item.id === data.id);
+      console.log(foundItem)
+      if(!(foundItem != -1)){
+        this.playList.unshift(data)
+      }
     }
   }
 

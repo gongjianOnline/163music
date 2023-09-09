@@ -8,7 +8,7 @@
       <div class="tabsContainer">
         <div :class="{'tabsSelected':tabsIndex == 0}" @click="handelTabs(0)">
           <span>歌曲</span>
-          <span>{{playList.data.length}}</span>
+          <span>{{SongSheetPlayList.data.length}}</span>
         </div>
         <div :class="{'tabsSelected':tabsIndex == 1}" @click="handelTabs(1)">
           <span>评论</span>
@@ -21,7 +21,7 @@
       </div>
       
       <!-- 歌曲列表模块 -->
-      <TableComponent v-if="tabsIndex == 0" :data="playList.data"></TableComponent>
+      <TableComponent v-if="tabsIndex == 0" :data="SongSheetPlayList.data"></TableComponent>
       <!-- 评论模块 -->
       <CommitComponent v-if="tabsIndex == 1" :data="commitList.data"></CommitComponent>
       <!-- 收藏者列表 -->
@@ -76,13 +76,13 @@ const getPlayListDetail = ()=>{
 }
 
 /* 歌单列表 */
-let playList = reactive<{data:SSListSong[]}>({data:[]})
+let SongSheetPlayList = reactive<{data:SSListSong[]}>({data:[]})
 const getPlayList = ()=>{
   let listId = router.query.id;
   api.finechoiceApi.playlistDynamic(listId).then((response)=>{
     console.log("歌单详情",response);
     let res = response as SSListData;
-    playList.data = res.songs;
+    SongSheetPlayList.data = res.songs;
   })
 }
 
@@ -112,7 +112,7 @@ const getPlaySubscribers = ()=>{
 
 /* 将歌单同步到pain中 */
 const handlePlayAll = ()=>{
-  playStore.setPlayList(playList.data)
+  playStore.setPlayList(SongSheetPlayList.data)
 }
 
 getPlayListDetail();
