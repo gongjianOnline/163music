@@ -96,7 +96,6 @@ const handelMainWindow =async (btnType)=>{
     case "max":
       window.mainWindow.onMaxWindow();
       isMaximized.value = await window.mainWindow.getWindowStatus();
-      console.log(isMaximized.value)
       break;
     default:
       window.mainWindow.onClose()

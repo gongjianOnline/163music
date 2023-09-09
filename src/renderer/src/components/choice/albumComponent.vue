@@ -70,7 +70,6 @@ withDefaults(defineProps<{
 })
 
 const handleClick = (item)=>{
-  console.log(item);
   router.push({
     name:"Album",
     query:{

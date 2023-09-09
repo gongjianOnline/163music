@@ -82,7 +82,6 @@ const propsData = withDefaults(defineProps<{
   
 })
 
-console.log("传值打印",propsData.data)
 
 
 </script>

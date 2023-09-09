@@ -79,7 +79,6 @@ let codeItem:any = ref(null);
 const codeDate = ref(60);
 const getCode = ()=>{
   if(codeItem.value){return}
-  console.log("111");
   codeItem.value = setInterval(()=>{
     if(codeDate.value == 0){
       clearInterval(codeItem.value);
@@ -104,7 +103,6 @@ const handleLogin = ()=>{
     return;
   }
   api.login.login(phoneValue.value,password.value).then((response:any)=>{
-    console.log("用户登录",response)
     /* 登录成功后调用获取账户信息接口 */
     if(response.code == 200){
       handleAccountInfo()
@@ -116,7 +114,6 @@ const handleLogin = ()=>{
 /**登录状态 */
 const loginStatus = ()=>{
   api.login.loginStatus().then((response)=>{
-    console.log("登录状态",response)
     let res = response as LoginStatus;
     loginStore.setLoginStatus(res.data.account);
     // handleUserInfo(res.data.account?.id)
@@ -126,7 +123,6 @@ const loginStatus = ()=>{
 /* 获取账户信息 */
 const handleAccountInfo = ()=>{
   api.login.getAccountInfo().then((response)=>{
-    console.log("获取账户信息",response)
     let res = response as LoginStatusData;
     loginStore.setLoginStatus(res.account);
     // handleUserInfo(res.account?.id)

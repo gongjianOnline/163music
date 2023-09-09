@@ -54,14 +54,13 @@ const handelSend = ()=>{
   console.log(textareaValue.value)
 }
 
-let props = withDefaults(defineProps<{
+withDefaults(defineProps<{
     data:SongSheetCommitComment[]
 }>(),{
   data:()=>{
     return []
   }
 })
-console.log("评论",props.data);
 
 
 

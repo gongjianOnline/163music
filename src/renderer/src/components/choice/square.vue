@@ -57,8 +57,6 @@ const handelMoreTagsChild = (index,item)=>{
 /* 标签列表 */
 const getSongSheetTags = ()=>{
   api.finechoiceApi.songSheetTags().then((response)=>{
-    console.log("标签列表")
-    console.log(response)
     let res = response as TagData;
     tagsData.data = res.tags.splice(0,6);
     moreTagsData.data = res.tags;
@@ -70,8 +68,6 @@ const SSLData = reactive<{data:FSSLItem[]}>({data:[]})
 const getSongSheetList = (cat,limit)=>{
   SSLData.data = [];
   api.finechoiceApi.songSheetList(cat,limit).then((response)=>{
-    console.log("歌单列表");
-    console.log(response);
     let res = response as FSSLData;
     SSLData.data = res.playlists;
   })

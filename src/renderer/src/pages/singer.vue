@@ -52,10 +52,8 @@ const singerInfo = reactive<{data:any}>({data:{}})
 const getInfo = ()=>{
   let id = router.query.id;
   api.finechoiceApi.artistDetail(id).then((response)=>{
-    console.log("歌手信息",response);
     let res = response as SingerInfo;
     singerInfo.data = res.data;
-    console.log("111",singerInfo.data)
   })
 }
 
@@ -65,7 +63,6 @@ const playList = reactive<{data:SSListSong[]}>({data:[]})
 const getAlbumContent =  ()=>{
   let id = router.query.id;
   api.finechoiceApi.artistsList(id).then((response:any)=>{
-    console.log("专辑内容",response)
     playList.data = response.hotSongs;
     // playInfo.data = response.album;
   })

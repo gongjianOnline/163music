@@ -77,7 +77,7 @@ const handelPlayAll = ()=>{
   emit("handle-playAll")
 }
 
-console.log("传值打印",propsData.data)
+
 
 
 </script>

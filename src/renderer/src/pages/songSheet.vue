@@ -80,7 +80,6 @@ let SongSheetPlayList = reactive<{data:SSListSong[]}>({data:[]})
 const getPlayList = ()=>{
   let listId = router.query.id;
   api.finechoiceApi.playlistDynamic(listId).then((response)=>{
-    console.log("歌单详情",response);
     let res = response as SSListData;
     SongSheetPlayList.data = res.songs;
   })
@@ -91,11 +90,8 @@ const commitList = reactive<{data:SongSheetCommitComment[]}>({data:[]})
 const getPlayListCommit = ()=>{
   let listId = router.query.id;
   api.finechoiceApi.playListCommit(listId).then((response)=>{
-    
     let res = response as  SongSheetCommitData;
-    console.log("评价111",res.comments)
     commitList.data = res.comments;
-    console.log("111",commitList.data)
   })
 }
 
@@ -104,7 +100,6 @@ const playSubscribers = reactive<{data:SongSheetCollectSubscriber[]}>({data:[]})
 const getPlaySubscribers = ()=>{
   let listId = router.query.id;
   api.finechoiceApi.playSubscribers(listId).then((response)=>{
-    console.log("歌单收藏者",response)
     let res = response as SongSheetCollectData;
     playSubscribers.data = res.subscribers;
   })

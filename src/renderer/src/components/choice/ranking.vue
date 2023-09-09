@@ -57,8 +57,6 @@ const getToplist = ()=>{
     topListData.data = res.list.slice(4,9);
     otherListData.data= res.list.slice(9,res.list.length-1);
     getOfficialDetails()
-
-    console.log("111",officialListData)
   })
 }
 /* 官方推荐 */
@@ -80,7 +78,6 @@ const getOfficialDetails = ()=>{
       officialDetailsData.data[i].imgUrl = res.songs[0].al.picUrl;
     })
   }
-  console.log(officialDetailsData.data)
 }
 
 

@@ -60,8 +60,6 @@ const biserialPageA = reactive<{data:FMVItem[]}>({data:[]});
 const biserialPageB = reactive<{data:FMVItem[]}>({data:[]});
 const geteExclusive = ()=>{
   api.finechoiceApi.exclusive().then((response)=>{
-    console.log("网易出品MV")
-    console.log(response)
     let res = response as FMVData;
     var groupedArr: FMVItem[][] = [];
     for (let i = 0; i < res.data.length; i += 6) {
@@ -74,9 +72,7 @@ const geteExclusive = ()=>{
 /* 精选歌单 */
 const FPDataList = reactive<{data:FPItem[]}>({data:[]});
 const getPlaylist = ()=>{
-  console.log("精选歌单")
   api.finechoiceApi.playlist().then((response)=>{
-    console.log(response)
     let res = response as FPData;
     FPDataList.data = res.playlists;
   })
@@ -87,8 +83,6 @@ const newAlbumDataA = reactive<{data:AlbumItem[]}>({data:[]});
 const newAlbumDataB = reactive<{data:AlbumItem[]}>({data:[]});
 const getNewAlbum = ()=>{
   api.finechoiceApi.newAlbum().then((response)=>{
-    console.log("最新专辑");
-    console.log(response)
     let res = response as AlbumData;
     var groupedArr: AlbumItem[][] = [];
     for (let i = 0; i < res.albums.length; i += 6) {

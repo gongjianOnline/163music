@@ -74,7 +74,6 @@ const handelToSS = ()=>{
 const RSRecommend = reactive<{data:PCMItem[]}>({data:[]});
 const getRSRecommend = ()=>{
   api.radioStationApi.RSRecommend().then((response)=>{
-    console.log("个性推荐",response)
     let res = response as PCMData;
     RSRecommend.data = res.data;
   })
@@ -84,12 +83,9 @@ const getRSRecommend = ()=>{
 const djHostData = reactive<{data:PDHItem[][]}>({data:[]})
 const getDjHost = ()=>{
   api.radioStationApi.djHost().then((response)=>{
-    console.log("热门电台")
-    console.log(response)
     let res = response as PDHData;
     djHostData.data[0] = res.djRadios.slice(0,6);
     djHostData.data[1] = res.djRadios.slice(6,12);
-    console.log(djHostData.data)
   })
 }
 

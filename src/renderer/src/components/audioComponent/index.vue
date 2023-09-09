@@ -123,8 +123,6 @@ watch(()=>playStore.musicInfo,(newVal:any)=>{
 })
 /**监听播放列表变化 */
 watch(()=>playStore.playList,(newVal:any)=>{
-  console.log(newVal)
-  console.log(newVal[0].id)
   playStore.setMusicInfo(newVal[0])
 })
 

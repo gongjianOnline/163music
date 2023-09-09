@@ -24,7 +24,6 @@ export const usePlayStore = defineStore("PlayStore",{
     /**单曲添加到播放列表 */
     setAddPlay(data){
       const foundItem = this.playList.findIndex(item => item.id === data.id);
-      console.log(foundItem)
       if(!(foundItem != -1)){
         this.playList.unshift(data)
       }

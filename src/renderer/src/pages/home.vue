@@ -67,7 +67,6 @@ const getPersonalized = ()=>{
   api.homeApi.personalized().then((response)=>{
     const res = response as PersonalizedData;
     personalizedData.data = res.result;
-    console.log(personalizedData.data)
   })
 }
 
@@ -76,15 +75,11 @@ const PNDataA = reactive<{data:PNItem[]}>({data:[]});
 const PNDataB = reactive<{data:PNItem[]}>({data:[]});
 const getPersonalizedNewsong = ()=>{
   api.homeApi.personalizedNewsong().then((response)=>{
-    console.log("推荐音乐")
-    console.log(response)
     const res = response as PNData;
     var groupedArr: PNItem[][] = [];
     for (let i = 0; i < res.result.length; i += 6) {
       groupedArr.push(res.result.slice(i, i + 6));
     }
-    console.log("-----")
-    console.log(groupedArr[1])
     PNDataA.data = groupedArr[0];
     PNDataB.data = groupedArr[1];
     
