@@ -4,8 +4,13 @@
       :modelValue="dialogVisible"
       width="43%"
       :before-close="handleClose">
-      <div class="loginDialog">
+      <div class="loginDialog" v-if="isCode">
         <div class="loginHeader">
+          <div class="loginCode">
+            <svg class="icon" aria-hidden="true" @click="isCode=false"> 
+              <use xlink:href="#icon-erweima"></use>
+            </svg>
+          </div>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-wangyiyunyinle-"></use>
           </svg>
@@ -41,17 +46,26 @@
         </div>
 
       </div>
+      
+      <!-- 二维码登录 -->
+      <div v-else class="loginCodeContainer">
+        <div class="codeTitleContainer">使用APP扫描二维码</div>
+        <div class="codeLoginContent">
+          <img :src="loginCodeImgUrl" alt="">
+        </div>
+      </div>
 
     </el-dialog>
   </div>
+
 </template>
 
 <script lang="ts" setup>
-import {ref} from "vue";
+import {ref,watch} from "vue";
 import {useLoginStore} from "../../store/index";
 import { ElMessage } from 'element-plus'
 import api from "../../api/api";
-import {LoginStatusData} from "../../module/loginStatus"
+import {LoginStatus,LoginStatusData} from "../../module/loginStatus"
 const loginStore = useLoginStore();
 
 withDefaults(defineProps<{
@@ -112,30 +126,29 @@ const handleLogin = ()=>{
 }
 
 /**登录状态 */
-// const loginStatus = ()=>{
-//   api.login.loginStatus().then((response)=>{
-//     let res = response as LoginStatus;
-//     loginStore.setLoginStatus(res.data.account);
-//     // handleUserInfo(res.data.account?.id)
-//   })
-// }
+const loginStatus = ()=>{
+  api.login.loginStatus().then((response)=>{
+    let res = response as LoginStatus;
+    loginStore.setLoginStatus(res.data.account);
+    handleUserInfo(res.data.account?.id)
+  })
+}
 
 /* 获取账户信息 */
 const handleAccountInfo = ()=>{
   api.login.getAccountInfo().then((response)=>{
     let res = response as LoginStatusData;
     loginStore.setLoginStatus(res.account);
-    // handleUserInfo(res.account?.id)
+    handleUserInfo(res.account?.id)
   })
 }
 
 /* 获取用户信息 */
-// const handleUserInfo = (id)=>{
-//   console.log("id",id)
-//   api.login.getUserInfo("8023474819").then((response)=>{
-//     console.log("获取用户信息",response)
-//   })
-// }
+const handleUserInfo = (id)=>{
+  api.login.getUserInfo(id).then((response)=>{
+    loginStore.setUserInfo(response)
+  })
+}
 
 /* 注销登录 */
 // const handleLogout = ()=>{
@@ -146,7 +159,56 @@ const handleAccountInfo = ()=>{
 //   })
 // }
 
-// loginStatus();
+
+
+/* 二维码登录模块 */
+const isCode = ref(true);
+/* 获取二维码的key */
+const loginCodeKey = ()=>{
+  api.login.getCodeKey().then((response:any)=>{
+    console.log("获取二维码的key",response);
+    let uniKey = response.data.unikey;
+    loginCodeImg(uniKey)
+  })
+}
+/* 获取二维码图 */
+const loginCodeImgUrl = ref("");
+const loginCodeImg = (key)=>{
+  api.login.getLoginCode(key).then((response:any)=>{
+    loginCodeImgUrl.value = response.data.qrimg;
+    checkCodeStatus.value = setInterval(()=>{
+      checkCode(key);
+    },1000)
+  })
+}
+/* 检测二维码状态 */
+const checkCodeStatus = ref();
+const codeIsValid = ref("");
+const checkCode = (key)=>{
+  api.login.checkLoginCode(key).then((response:any)=>{
+    let statusCode = response.code
+    if(statusCode == 800){
+      codeIsValid.value = "二维码过期";
+      clearInterval(checkCodeStatus.value);
+    }
+    if(statusCode == 803){
+      clearInterval(checkCodeStatus.value);
+      handleClose();
+      loginStatus();
+    }
+  })
+}
+
+watch(()=>isCode.value,(newVal)=>{
+  if(!newVal){
+    loginCodeKey();
+  }else{
+    checkCodeStatus.value?clearInterval(checkCodeStatus.value):""
+  }
+})
+
+
+loginStatus();
 </script>
 
 <style lang="less" scoped>
@@ -157,6 +219,17 @@ const handleAccountInfo = ()=>{
   width: 100%;
   height: 40px;
   text-align: center;
+  position: relative;
+}
+.loginCode{
+  position: absolute;
+  left: -20px;
+  top: -40px;
+  font-size: 14px;
+}
+.loginCode .icon{
+  transform: scale(1.5) !important;
+  cursor: pointer;
 }
 .loginHeader .icon{
   transform: scale(10);
@@ -242,5 +315,27 @@ const handleAccountInfo = ()=>{
   margin-left: -6px;
 }
 
-
+/* 二维码登录二维码 */
+.loginCodeContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.codeTitleContainer{
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.codeLoginContent{
+  width: 200px;
+  height: 200px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.codeLoginContent img{
+  width: 100%;
+  height: 100%;
+}
 </style>

@@ -1,4 +1,4 @@
-import {post,get,FormDataPost} from "../utils/http"
+import {post,get} from "../utils/http"
 
 /**登录 */
 const login = (phone,captcha)=>{
@@ -29,6 +29,20 @@ const loginout = ()=>{
   return get("/logout",{})
 }
 
+/* 二维码登录 */
+// 生成二维码key
+const getCodeKey = ()=>{
+  return get("/login/qr/key",{})
+}
+/* 获取二维码 */
+const getLoginCode = (key)=>{
+  return get("/login/qr/create",{key:key,qrimg:true})
+}
+/**轮询检测二维码登录状态 */
+const checkLoginCode = (key)=>{
+  return get("/login/qr/check",{key:key,timestamp:new Date().getTime()})
+}
+
 
 export default {
   login,
@@ -37,4 +51,7 @@ export default {
   loginout,
   getAccountInfo,
   getUserInfo,
+  getCodeKey,
+  getLoginCode,
+  checkLoginCode
 }

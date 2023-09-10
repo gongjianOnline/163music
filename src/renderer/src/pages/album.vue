@@ -59,7 +59,6 @@ const playInfo = reactive({data:[]})
 const getAlbumContent =  ()=>{
   let id = router.query.id;
   api.finechoiceApi.albumContent(id).then((response:any)=>{
-    console.log("专辑内容",response)
     playList.data = response.songs;
     playInfo.data = response.album;
   })

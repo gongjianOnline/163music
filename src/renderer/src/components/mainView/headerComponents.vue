@@ -23,9 +23,15 @@
     <!-- 用户名操作 -->
     <div class="operateContainer">
       <!-- 用户模块 -->
-      <div class="userContainer">
+      <div class="userContainer" v-if="!loginStore.loginStatus">
         <div class="userImgContainer"></div>
-        <div class="userNameContent" @click="handleLogin">未登录</div>
+        <div class="userNameContent" @click="handleLogin">未登录 </div>
+      </div>
+      <div class="userContainer" v-else>
+        <div class="userImgContainer">
+          <img :src=" loginStore?.userInfo?.profile?.avatarUrl" alt="">
+        </div>
+        <div class="userNameContent">{{ loginStore?.userInfo?.profile?.nickname }}</div>
       </div>
       <!-- 用户相关操作 -->
       <div class="userIconContainer">
@@ -83,8 +89,10 @@
 import {ref} from "vue"
 import {useRouter} from 'vue-router';
 import LoginComponent from "../loginComponent/index.vue";
+import {useLoginStore} from "../../store/index"
 
 const router = useRouter();
+const loginStore = useLoginStore();
 /* 判断是否是最大化 */
 const isMaximized = ref(false);
 /* 缩小&放大&关闭,主进程通信 */
@@ -199,6 +207,11 @@ const handleClose = (status)=>{
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  overflow: hidden;
+}
+.userImgContainer img{
+  width: 100%;
+  height: 100%;
 }
 .userNameContent{
   font-size: 14px;

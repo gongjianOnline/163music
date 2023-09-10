@@ -139,7 +139,6 @@ const getArtistList = (type,area,initial)=>{
 
 /* 歌手详情 */
 const handelClick = (item)=>{
-  console.log(item)
   router.push({
     path:"/singer",
     query:{
