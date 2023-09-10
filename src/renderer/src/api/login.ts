@@ -3,6 +3,7 @@ import {post,get,FormDataPost} from "../utils/http"
 /**登录 */
 const login = (phone,captcha)=>{
   return post('/login/cellphone',{phone:phone,captcha:captcha,timestamp:new Date().getTime()})
+  // return post('/login/cellphone',{phone:phone,password:captcha,timestamp:new Date().getTime()})
 }
 /* 获取验证码 */
 const getCode = (phone)=>{

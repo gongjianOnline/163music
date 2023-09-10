@@ -51,7 +51,7 @@ import {ref} from "vue";
 import {useLoginStore} from "../../store/index";
 import { ElMessage } from 'element-plus'
 import api from "../../api/api";
-import {LoginStatus,LoginStatusData} from "../../module/loginStatus"
+import {LoginStatusData} from "../../module/loginStatus"
 const loginStore = useLoginStore();
 
 withDefaults(defineProps<{
@@ -112,13 +112,13 @@ const handleLogin = ()=>{
 }
 
 /**登录状态 */
-const loginStatus = ()=>{
-  api.login.loginStatus().then((response)=>{
-    let res = response as LoginStatus;
-    loginStore.setLoginStatus(res.data.account);
-    // handleUserInfo(res.data.account?.id)
-  })
-}
+// const loginStatus = ()=>{
+//   api.login.loginStatus().then((response)=>{
+//     let res = response as LoginStatus;
+//     loginStore.setLoginStatus(res.data.account);
+//     // handleUserInfo(res.data.account?.id)
+//   })
+// }
 
 /* 获取账户信息 */
 const handleAccountInfo = ()=>{
@@ -146,7 +146,7 @@ const handleAccountInfo = ()=>{
 //   })
 // }
 
-loginStatus();
+// loginStatus();
 </script>
 
 <style lang="less" scoped>
