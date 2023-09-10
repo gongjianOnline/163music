@@ -4,10 +4,27 @@
     <HeaderComponents></HeaderComponents>
     <div class="swiperContainer">
       <BannerComponent></BannerComponent>
+      <!-- 个性化推荐 -->
+      <SingleRowComponent v-if="loginStore.loginStatus" class="singleRowComponent">
+        <template #titleName>
+          <div class="singleTitleContent">每日推荐</div>
+        </template>
+        <template #slideComponent>
+          <Slide class="slideContent" v-for="(item) in HomeEverRecommendData.data" :key="item.id">
+            <div class="carousel__item" @click="handelToSS(item.id)">
+              <Album :urlImg="item.picUrl" 
+                :playNum="item.trackCount" 
+                :playTitle="item.name"></Album>
+            </div>
+          </Slide>
+        </template>
+      </SingleRowComponent>
+
+
       <!-- 推荐歌单 -->
       <SingleRowComponent>
         <template #titleName>
-          <div class="singleTitleContent">推荐歌单</div>
+          <div class="singleTitleContent">猜你喜欢</div>
         </template>
         <template #slideComponent>
           <Slide class="slideContent" v-for="(personalizedItem,index) in personalizedData.data" :key="index">
@@ -48,7 +65,11 @@ import {useRouter} from 'vue-router';
 import api from "../api/api"
 import {PersonalizedItem,PersonalizedData} from "../module/PersonalizedModule"
 import {PNData,PNItem} from "../module/personalizwdNewsongModule"
+import {useLoginStore} from "../store/index"
+import {HomeEverRecommendItem,HomeEverRecommend} from "../module/homeEverRecommend"
+import {HomeRecommendSongsData,HomeRecommendSongsDailySong} from "../module/homeRecommendSongs"
 
+const loginStore = useLoginStore();
 
 /* 跳转到歌单页面 */
 const router = useRouter();
@@ -59,6 +80,30 @@ const handelToSS = (id)=>{
       id:id
     }
   });
+}
+/* 获取每日推荐 */
+const HomeEverRecommendData = reactive<{data:HomeEverRecommendItem[]}>({data:[]})
+const getEverRecommend = ()=>{
+  api.finechoiceApi.everRecommend().then((response)=>{
+    let res = response as HomeEverRecommend;
+    HomeEverRecommendData.data = res.recommend;
+  })
+}
+
+/* 获取每日推荐歌曲 */
+const RecommendSongsA = reactive<{data:HomeRecommendSongsDailySong[]}>({data:[]})
+const RecommendSongsB = reactive<{data:HomeRecommendSongsDailySong[]}>({data:[]})
+const getRecommendSongs= ()=>{
+  api.finechoiceApi.recommendSongs().then((response)=>{
+    console.log("每日歌曲",response)
+    let res = response as HomeRecommendSongsData;
+    var groupedArr: HomeRecommendSongsDailySong[][] = [];
+    for (let i = 0; i < res.data.dailySongs.length; i += 6) {
+      groupedArr.push(res.data.dailySongs.slice(i, i + 6));
+    }
+    RecommendSongsA.data = groupedArr[0]
+    RecommendSongsB.data = groupedArr[1]
+  })
 }
 
 /* 获取推荐歌单 */
@@ -88,7 +133,9 @@ const getPersonalizedNewsong = ()=>{
 
 
 getPersonalized();
-getPersonalizedNewsong()
+getPersonalizedNewsong();
+getEverRecommend();
+getRecommendSongs()
 </script>
 
 <style lang="less" scoped>
@@ -98,6 +145,9 @@ getPersonalizedNewsong()
 .swiperContainer{
   padding: 30px 20px;
   -webkit-app-region:no-drag
+}
+.singleRowComponent{
+  margin-bottom: 20px;
 }
 .singleTitleContent{
   font-size: 20px;

@@ -103,6 +103,8 @@ $ pnpm build:linux
   - songSheetCollect.ts 歌单收藏者数据模型
   - singerInfo.ts 歌手信息详情模型
   - userInfo.ts 登录用户信息数据模型
+  - homeEverRecommend.ts 每日推荐歌单数据模型
+  - homeRecommendSongs.ts 每日推荐歌曲数据模型
 - store
   - index.ts pinia数据仓库用于管理用户登录数据
   - auto.ts 用于存储音乐列表和播放器的相关数据

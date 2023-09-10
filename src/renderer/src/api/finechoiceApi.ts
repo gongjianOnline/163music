@@ -82,6 +82,16 @@ const playMusicUrl = (id,level)=>{
   return get("/song/url/v1",{level:level,id:id})
 }
 
+/* 获取每日推荐（登录） */
+const everRecommend = ()=>{
+  return get("/recommend/resource",{})
+}
+
+/* 获取每日推荐歌曲 */
+const recommendSongs = ()=>{
+  return get("/recommend/songs",{})
+}
+
 export default {
   playlist,
   exclusive,
@@ -100,5 +110,7 @@ export default {
   albumComment,
   artistDetail,
   artistsList,
-  playMusicUrl
+  playMusicUrl,
+  everRecommend,
+  recommendSongs
 }
