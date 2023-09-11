@@ -2,7 +2,7 @@ import axios from './axios'
 import qs from 'qs'
 
 export function post(url, data, error="") {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     axios({
       method: 'post',
       url: url,
@@ -20,7 +20,7 @@ export function post(url, data, error="") {
 }
 
 export function get(url, data, error="") {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     axios({
       method: 'get',
       url: url,
@@ -39,7 +39,7 @@ export function get(url, data, error="") {
 
 
 export function FormDataPost(url, data, error) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     axios({
       method: 'post',
       url: url,

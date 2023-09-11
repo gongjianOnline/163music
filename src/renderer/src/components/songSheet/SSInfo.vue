@@ -61,7 +61,7 @@ const emit = defineEmits<{
   (e:"handle-playAll"):void
 }>();
 
-const propsData = withDefaults(defineProps<{
+withDefaults(defineProps<{
   data:SSInfoPlaylist
 }>(),{
   data:()=>{

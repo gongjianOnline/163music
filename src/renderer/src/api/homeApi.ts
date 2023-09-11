@@ -1,4 +1,4 @@
-import {post,get,FormDataPost} from "../utils/http"
+import {get} from "../utils/http"
 
 /* 获取banner */
 const getBanner = ()=>{

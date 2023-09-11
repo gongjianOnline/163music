@@ -6,7 +6,7 @@ switch (process.env.NODE_ENV) {
     axios.defaults.baseURL = '/163'
     break
   case 'production':
-    axios.defaults.baseURL = 'http://music.gjweb.pro/'
+    axios.defaults.baseURL = 'http://114.115.218.92:3002/'
     break
 }
 
@@ -26,8 +26,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     return response.data
-  },
-  (error) => {
+  },(error) => {
     if (error.response) {
       switch (error.response.status) {
         case 401:
@@ -48,6 +47,7 @@ axios.interceptors.response.use(
       }
       return Promise.reject(error)
     }
+    return Promise.reject(error); 
   }
 )
 

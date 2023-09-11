@@ -64,7 +64,7 @@ interface DataType {
   [key: string]: any
 }
 
-const propsData = withDefaults(defineProps<{
+withDefaults(defineProps<{
   data:DataType
 }>(),{
   data:()=>{

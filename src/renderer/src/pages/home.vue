@@ -19,6 +19,12 @@
           </Slide>
         </template>
       </SingleRowComponent>
+      
+      <!-- 个性推荐 -->
+      <SongBiserialComponent
+        titleName="个性推荐"
+        :pageA="recommendSongsA.data"
+        :pageB="recommendSongsB.data"></SongBiserialComponent>
 
 
       <!-- 推荐歌单 -->
@@ -59,6 +65,7 @@ import BannerComponent from "../components/homeComponent/bannerComponent.vue"
 import SingleRowComponent from "../components/homeComponent/singleRowComponent.vue"
 import Album from "../components/globalComponent/album.vue";
 import Biserial from "../components/homeComponent/biserialComponent.vue";
+import SongBiserialComponent from "../components/homeComponent/songBiserialComponent.vue";
 import { Slide } from 'vue3-carousel';
 import {reactive} from "vue";
 import {useRouter} from 'vue-router';
@@ -91,8 +98,8 @@ const getEverRecommend = ()=>{
 }
 
 /* 获取每日推荐歌曲 */
-const RecommendSongsA = reactive<{data:HomeRecommendSongsDailySong[]}>({data:[]})
-const RecommendSongsB = reactive<{data:HomeRecommendSongsDailySong[]}>({data:[]})
+const recommendSongsA = reactive<{data:HomeRecommendSongsDailySong[]}>({data:[]})
+const recommendSongsB = reactive<{data:HomeRecommendSongsDailySong[]}>({data:[]})
 const getRecommendSongs= ()=>{
   api.finechoiceApi.recommendSongs().then((response)=>{
     console.log("每日歌曲",response)
@@ -101,8 +108,8 @@ const getRecommendSongs= ()=>{
     for (let i = 0; i < res.data.dailySongs.length; i += 6) {
       groupedArr.push(res.data.dailySongs.slice(i, i + 6));
     }
-    RecommendSongsA.data = groupedArr[0]
-    RecommendSongsB.data = groupedArr[1]
+    recommendSongsA.data = groupedArr[0]
+    recommendSongsB.data = groupedArr[1]
   })
 }
 

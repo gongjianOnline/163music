@@ -53,11 +53,11 @@
 </template>
 
 <script lang="ts" setup>
-import dayjs from "dayjs";
-import {SingerInfoData} from "../../module/singerInfo"
+// import dayjs from "dayjs";
+// import {SingerInfoData} from "../../module/singerInfo"
 
 withDefaults(defineProps<{
-  data:SingerInfoData
+  data:any
 }>(),{
   data:()=>{
     return {

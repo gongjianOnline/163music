@@ -26,18 +26,19 @@
 </template>
 
 <script lang="ts" setup>
-import {FODIData} from "../../module/finechoiceOfficialDetailsItem";
+// import {FODIData} from "../../module/finechoiceOfficialDetailsItem";
 
 withDefaults(defineProps<{
-  data:FODIData
+  data:any
 }>(),{
   data:()=>{
     return {
+      id:"",
       name: "",
       updateFrequency: "",
       imgUrl:"",
       musicData: [],
-    }
+    } as unknown;
   }
 })
 </script>

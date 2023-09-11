@@ -55,6 +55,8 @@ $ pnpm build:linux
   - homeComponent 首页组件存放文件
     - bannerComponent.vue 首页bannber轮播图
     - singleRowComponent.vue 创建的单行轮播组件
+    - songBiserialComponent.vue 创建双列轮播(歌曲)
+    - biserialComponent.vue 创建双列轮播(歌单)
   - SSCollect 专辑组件文件夹
     - SSCollect.vue 专辑中收藏列表组件
     - SSInfo.vue 专辑信息头部组件
