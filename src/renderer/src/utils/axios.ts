@@ -36,7 +36,7 @@ axios.interceptors.response.use(
           alert('服务器拒绝执行')
           break
         case 404:
-          alert('找不到页面')
+          // alert('找不到页面')
           break
       }
     } else {

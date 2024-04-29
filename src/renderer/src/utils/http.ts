@@ -13,7 +13,7 @@ export function post(url, data, error="") {
       },
       (err) => {
         err = error ? error : err
-        alert(err)
+        // alert(err)
       }
     )
   })
@@ -31,7 +31,7 @@ export function get(url, data, error="") {
       },
       (err) => {
         err = error ? error : err
-        alert(err)
+        // alert(err)
       }
     )
   })
@@ -54,7 +54,7 @@ export function FormDataPost(url, data, error) {
       },
       (err) => {
         err = error ? error : err
-        alert(err)
+        // alert(err)
       }
     )
   })

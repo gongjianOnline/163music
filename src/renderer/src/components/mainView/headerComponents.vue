@@ -23,7 +23,7 @@
     <!-- 用户名操作 -->
     <div class="operateContainer">
       <!-- 用户模块 -->
-      <div class="userContainer" v-if="!loginStore.loginStatus">
+      <div class="userContainer" v-if="loginStore.loginStatus">
         <div class="userImgContainer"></div>
         <div class="userNameContent" @click="handleLogin">未登录 </div>
       </div>
