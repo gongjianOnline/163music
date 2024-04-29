@@ -19,7 +19,7 @@ export default defineConfig({
       proxy: {
         // 接口地址代理
         '/163': {
-          target: 'http://114.115.218.92:3002/', // 接口的域名
+          target: 'http://49.235.118.199:3002/', // 接口的域名
           secure: false, // 如果是https接口，需要配置这个参数
           changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
           rewrite: path => path.replace(/^\/163/, '')
